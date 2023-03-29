@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include hr_vfg *.css
+recursive-include hr_vfg *.csv
+recursive-include hr_vfg *.html
+recursive-include hr_vfg *.ico
+recursive-include hr_vfg *.js
+recursive-include hr_vfg *.json
+recursive-include hr_vfg *.md
+recursive-include hr_vfg *.png
+recursive-include hr_vfg *.py
+recursive-include hr_vfg *.svg
+recursive-include hr_vfg *.txt
+recursive-exclude hr_vfg *.pyc
