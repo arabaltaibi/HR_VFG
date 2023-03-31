@@ -13,29 +13,32 @@
   "check_out_1",
   "section_break_12",
   "difference",
-  "early_going_hours",
+  "late_coming_hours",
   "column_break_26",
   "per_day_hour",
-  "late_coming_hours",
+  "early_going_hours",
   "column_break_13",
   "late_sitting",
   "additional_hours",
   "section_break_26",
-  "night",
-  "sunday",
-  "holiday",
-  "night_switch",
-  "mark_absent",
-  "column_break_19",
-  "late",
-  "early",
-  "half_day",
-  "mark_leave",
-  "column_break_25",
   "absent",
-  "extra_working_hours_after_shift",
+  "early",
+  "column_break_19",
+  "half_day",
+  "holiday",
+  "column_break_25",
+  "late",
+  "sunday",
+  "section_break_25",
+  "night",
+  "mark_absent",
   "extra_absent",
+  "column_break_29",
+  "night_switch",
   "mark_half_day",
+  "column_break_32",
+  "extra_working_hours_after_shift",
+  "mark_leave",
   "section_break_31",
   "ip",
   "total_ot_amount",
@@ -96,7 +99,7 @@
    "columns": 1,
    "fieldname": "late_sitting",
    "fieldtype": "Read Only",
-   "label": "Late Sitting"
+   "label": "Late Sitting Hours"
   },
   {
    "fieldname": "section_break_26",
@@ -117,7 +120,7 @@
    "fieldname": "early",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Early",
+   "label": "Early Going",
    "read_only": 1
   },
   {
@@ -193,6 +196,7 @@
    "label": "Late Coming Hours"
   },
   {
+   "description": "Extra Overtime",
    "fieldname": "additional_hours",
    "fieldtype": "Read Only",
    "label": "Additional Hours"
@@ -284,11 +288,23 @@
   {
    "fieldname": "column_break_38",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_29",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-03-31 18:54:40.324284",
+ "modified": "2023-03-31 21:17:53.942911",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance Table",

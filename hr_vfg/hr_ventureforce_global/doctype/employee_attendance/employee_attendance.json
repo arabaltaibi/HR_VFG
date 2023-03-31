@@ -20,6 +20,15 @@
   "table1",
   "section_break_7",
   "over_time",
+  "no_of_nights",
+  "total_adjusted_over_time",
+  "present_days",
+  "extra_hours",
+  "approved_ot",
+  "month_days",
+  "late_plus_early_hours_",
+  "late_early_adjustment",
+  "total_early_going_hours",
   "total_working_hours",
   "early_over_time",
   "column_break_13",
@@ -28,18 +37,21 @@
   "holiday_hour",
   "column_break_16",
   "difference",
-  "early_ot",
   "late_sitting_hours",
   "section_break_15",
   "total_absents",
   "total_early_goings",
-  "extra_absents",
   "column_break_22",
   "total_half_days",
   "extra_ot_amount",
   "column_break_18",
   "total_lates",
-  "late_adjusted_absents"
+  "late_adjusted_absents",
+  "deduction_hours",
+  "adjusted_late_half_days",
+  "late_absent",
+  "holiday_halfday_ot",
+  "holiday_full_day_ot"
  ],
  "fields": [
   {
@@ -210,12 +222,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "extra_absents",
-   "fieldtype": "Data",
-   "label": "Extra Absents",
-   "read_only": 1
-  },
-  {
    "fieldname": "extra_ot_amount",
    "fieldtype": "Currency",
    "hidden": 1,
@@ -234,11 +240,6 @@
    "label": "Holiday Hour"
   },
   {
-   "fieldname": "early_ot",
-   "fieldtype": "Data",
-   "label": "Early OT"
-  },
-  {
    "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Link",
@@ -251,10 +252,80 @@
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company"
+  },
+  {
+   "fieldname": "no_of_nights",
+   "fieldtype": "Data",
+   "label": "no_of_nights"
+  },
+  {
+   "fieldname": "total_adjusted_over_time",
+   "fieldtype": "Data",
+   "label": "total_adjusted_over_time"
+  },
+  {
+   "fieldname": "present_days",
+   "fieldtype": "Data",
+   "label": "present_days"
+  },
+  {
+   "fieldname": "extra_hours",
+   "fieldtype": "Data",
+   "label": "extra_hours"
+  },
+  {
+   "fieldname": "approved_ot",
+   "fieldtype": "Data",
+   "label": "approved_ot"
+  },
+  {
+   "fieldname": "month_days",
+   "fieldtype": "Data",
+   "label": "month_days"
+  },
+  {
+   "fieldname": "late_plus_early_hours_",
+   "fieldtype": "Data",
+   "label": "late_plus_early_hours_"
+  },
+  {
+   "fieldname": "late_early_adjustment",
+   "fieldtype": "Data",
+   "label": "late_early_adjustment"
+  },
+  {
+   "fieldname": "total_early_going_hours",
+   "fieldtype": "Data",
+   "label": "total_early_going_hours"
+  },
+  {
+   "fieldname": "deduction_hours",
+   "fieldtype": "Data",
+   "label": "deduction_hours"
+  },
+  {
+   "fieldname": "adjusted_late_half_days",
+   "fieldtype": "Data",
+   "label": "adjusted_late_half_days"
+  },
+  {
+   "fieldname": "late_absent",
+   "fieldtype": "Float",
+   "label": "late_absent"
+  },
+  {
+   "fieldname": "holiday_halfday_ot",
+   "fieldtype": "Data",
+   "label": "holiday_halfday_ot"
+  },
+  {
+   "fieldname": "holiday_full_day_ot",
+   "fieldtype": "Data",
+   "label": "holiday_full_day_ot"
   }
  ],
  "links": [],
- "modified": "2022-10-21 15:28:15.385713",
+ "modified": "2023-03-31 22:16:03.267138",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",
