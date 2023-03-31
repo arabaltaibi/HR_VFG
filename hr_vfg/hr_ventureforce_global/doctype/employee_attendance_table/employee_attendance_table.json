@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "creation": "2018-12-17 18:01:18.515481",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "section_break_2",
+  "check_in_1",
+  "column_break_7",
+  "check_out_1",
+  "section_break_12",
+  "difference",
+  "column_break_26",
+  "late_sitting",
+  "data_10",
+  "t",
+  "section_break_26",
+  "late",
+  "early",
+  "half_day",
+  "absent",
+  "extra_working_hours_after_shift",
+  "extra_absent",
+  "total_ot_amount",
+  "extra_absent_count",
+  "early_going",
+  "type"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "check_in_1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Check In"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "check_out_1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Check Out"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "difference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Total Hours"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "late_sitting",
+   "fieldtype": "Data",
+   "label": "Late Sitting"
+  },
+  {
+   "fieldname": "data_10",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "section_break_26",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "late",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Late",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "early",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Early",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "half_day",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Half Day",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "absent",
+   "fieldtype": "Check",
+   "label": "Absent"
+  },
+  {
+   "default": "0",
+   "fieldname": "extra_working_hours_after_shift",
+   "fieldtype": "Check",
+   "label": "Extra working hours after shift"
+  },
+  {
+   "columns": 2,
+   "default": "0",
+   "fieldname": "extra_absent",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Extra Absent"
+  },
+  {
+   "fieldname": "total_ot_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total OT Amount"
+  },
+  {
+   "fieldname": "extra_absent_count",
+   "fieldtype": "Int",
+   "label": "Extra Absent Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "early_going",
+   "fieldtype": "Int",
+   "label": "Early Going"
+  },
+  {
+   "fieldname": "t",
+   "fieldtype": "Data",
+   "label": "T"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2022-07-19 18:59:43.732569",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Employee Attendance Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

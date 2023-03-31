@@ -1,0 +1,401 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-11 19:08:43.077382",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "employee_name",
+  "file_no",
+  "father_name",
+  "col_break3",
+  "employee",
+  "madarsa",
+  "city",
+  "cnic",
+  "col_break_8",
+  "designation",
+  "department",
+  "sec_break_3",
+  "replacement_employee",
+  "rep_employee_name",
+  "rep_file_no",
+  "rep_department",
+  "col_break_6",
+  "rep_designation",
+  "rep_madarsa",
+  "sec_break",
+  "date_2",
+  "new_file_no",
+  "morning",
+  "afternoon",
+  "evening",
+  "col_break_4",
+  "new_madarsa",
+  "new_department",
+  "branch_city",
+  "hafiz",
+  "nazrah",
+  "qaidah",
+  "col_break_5",
+  "designation_name",
+  "shift",
+  "sec_break_2",
+  "previous_salary",
+  "current_salary",
+  "salary_increment",
+  "col_break",
+  "previous_medical",
+  "current_medical",
+  "increment_medical",
+  "col_break_2",
+  "previous_allowance",
+  "current_allowance",
+  "increment_allowance",
+  "col_break_3",
+  "before_increment",
+  "after_increment",
+  "increment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.first_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.father_name_",
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father's Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.branch",
+   "fieldname": "madarsa",
+   "fieldtype": "Link",
+   "label": "Madarsa",
+   "options": "Branch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.city_name",
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "Territory",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "date_2",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fetch_from": "employee.file_number",
+   "fieldname": "file_no",
+   "fieldtype": "Data",
+   "label": "File No",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "morning",
+   "fieldtype": "Check",
+   "label": "Morning"
+  },
+  {
+   "default": "0",
+   "fieldname": "afternoon",
+   "fieldtype": "Check",
+   "label": "Afternoon"
+  },
+  {
+   "default": "0",
+   "fieldname": "evening",
+   "fieldtype": "Check",
+   "label": "Evening"
+  },
+  {
+   "fieldname": "new_madarsa",
+   "fieldtype": "Link",
+   "label": "New Madarsa Name",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "branch_city",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Branch City",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "replacement_employee",
+   "fieldtype": "Link",
+   "label": "Replacement Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "designation_name",
+   "fieldtype": "Link",
+   "label": "Designation Name",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "sec_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "employee.salary",
+   "fieldname": "previous_salary",
+   "fieldtype": "Currency",
+   "label": "Previous Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_salary",
+   "fieldtype": "Currency",
+   "label": "Current Salary"
+  },
+  {
+   "fieldname": "salary_increment",
+   "fieldtype": "Currency",
+   "label": "Salary Increment"
+  },
+  {
+   "fieldname": "col_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.medical_allowance",
+   "fieldname": "previous_medical",
+   "fieldtype": "Currency",
+   "label": "Previous Medical"
+  },
+  {
+   "fieldname": "current_medical",
+   "fieldtype": "Currency",
+   "label": "Current Medical"
+  },
+  {
+   "fieldname": "increment_medical",
+   "fieldtype": "Currency",
+   "label": "Increment Medical"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.conveyance_allowance",
+   "fieldname": "previous_allowance",
+   "fieldtype": "Currency",
+   "label": "Previous Allowance"
+  },
+  {
+   "fieldname": "current_allowance",
+   "fieldtype": "Currency",
+   "label": "Current Allowance"
+  },
+  {
+   "fieldname": "increment_allowance",
+   "fieldtype": "Currency",
+   "label": "Increment Allowance"
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "before_increment",
+   "fieldtype": "Currency",
+   "label": "Before Increment"
+  },
+  {
+   "fieldname": "after_increment",
+   "fieldtype": "Currency",
+   "label": "After Increment"
+  },
+  {
+   "fieldname": "increment",
+   "fieldtype": "Currency",
+   "label": "Increment"
+  },
+  {
+   "fieldname": "col_break3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_break_3",
+   "fieldtype": "Section Break",
+   "label": "Replacement"
+  },
+  {
+   "fetch_from": "replacement_employee.first_name",
+   "fieldname": "rep_employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "replacement_employee.department",
+   "fetch_if_empty": 1,
+   "fieldname": "rep_department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "replacement_employee.designation",
+   "fieldname": "rep_designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "replacement_employee.branch",
+   "fieldname": "rep_madarsa",
+   "fieldtype": "Link",
+   "label": "Madarsa",
+   "options": "Branch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "hafiz",
+   "fieldtype": "Check",
+   "label": "Hafiz"
+  },
+  {
+   "default": "0",
+   "fieldname": "nazrah",
+   "fieldtype": "Check",
+   "label": "Nazrah"
+  },
+  {
+   "default": "0",
+   "fieldname": "qaidah",
+   "fieldtype": "Check",
+   "label": "Qaidah"
+  },
+  {
+   "fetch_from": "employee.file_number",
+   "fieldname": "new_file_no",
+   "fieldtype": "Data",
+   "label": "New File No"
+  },
+  {
+   "fieldname": "col_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.file_number",
+   "fieldname": "rep_file_no",
+   "fieldtype": "Data",
+   "label": "File No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shift",
+   "fieldtype": "Link",
+   "label": "Shift",
+   "options": "Shift Type"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Transfer",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "employee.cnic",
+   "fieldname": "cnic",
+   "fieldtype": "Data",
+   "label": "CNIC",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-08 11:08:23.103718",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Transfer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

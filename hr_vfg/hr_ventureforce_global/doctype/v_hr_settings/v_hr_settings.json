@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-03-31 18:19:38.145359",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "maximum_lates_for_absent"
+ ],
+ "fields": [
+  {
+   "fieldname": "maximum_lates_for_absent",
+   "fieldtype": "Int",
+   "label": "Maximum Lates For Absent"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-03-31 18:19:38.145359",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "V HR Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

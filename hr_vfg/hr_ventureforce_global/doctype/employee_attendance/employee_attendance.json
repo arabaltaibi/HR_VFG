@@ -1,0 +1,282 @@
+{
+ "actions": [],
+ "creation": "2018-12-17 18:01:30.666688",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "month",
+  "email_id",
+  "designation",
+  "column_break_3",
+  "employee_name",
+  "unit",
+  "column_break_7",
+  "company",
+  "biometric_id",
+  "department",
+  "section_break_5",
+  "table1",
+  "section_break_7",
+  "over_time",
+  "total_working_hours",
+  "early_over_time",
+  "column_break_13",
+  "hours_worked",
+  "short_hours",
+  "holiday_hour",
+  "column_break_16",
+  "difference",
+  "early_ot",
+  "late_sitting_hours",
+  "section_break_15",
+  "total_absents",
+  "total_early_goings",
+  "extra_absents",
+  "column_break_22",
+  "total_half_days",
+  "extra_ot_amount",
+  "column_break_18",
+  "total_lates",
+  "late_adjusted_absents"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.biometric_id",
+   "fieldname": "biometric_id",
+   "fieldtype": "Read Only",
+   "label": "Biometric ID"
+  },
+  {
+   "fetch_from": "employee.branch",
+   "fieldname": "unit",
+   "fieldtype": "Read Only",
+   "label": "Unit"
+  },
+  {
+   "fetch_from": "employee.company_email",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Read Only",
+   "label": "Employee Name"
+  },
+  {
+   "fieldname": "month",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Month",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table1",
+   "fieldtype": "Table",
+   "label": "Table",
+   "options": "Employee Attendance Table"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Time Calculation"
+  },
+  {
+   "fieldname": "total_working_hours",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Total Working Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hours_worked",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Hours Worked",
+   "read_only": 1
+  },
+  {
+   "fieldname": "difference",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Difference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "late_sitting_hours",
+   "fieldtype": "Data",
+   "label": "Late Sitting Hours"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break",
+   "label": "Days Calculation"
+  },
+  {
+   "fieldname": "total_absents",
+   "fieldtype": "Data",
+   "label": "Total Absents"
+  },
+  {
+   "fieldname": "total_lates",
+   "fieldtype": "Data",
+   "label": "Total Lates",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_early_goings",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Total Early Goings",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_half_days",
+   "fieldtype": "Data",
+   "label": "Total Half Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "late_adjusted_absents",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Late Adjusted Absents"
+  },
+  {
+   "default": "0",
+   "fieldname": "over_time",
+   "fieldtype": "Data",
+   "label": "Over Time",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "short_hours",
+   "fieldtype": "Data",
+   "label": "Short Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "extra_absents",
+   "fieldtype": "Data",
+   "label": "Extra Absents",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extra_ot_amount",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Extra OT Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "early_over_time",
+   "fieldtype": "Data",
+   "label": "Early Over Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_hour",
+   "fieldtype": "Data",
+   "label": "Holiday Hour"
+  },
+  {
+   "fieldname": "early_ot",
+   "fieldtype": "Data",
+   "label": "Early OT"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  }
+ ],
+ "links": [],
+ "modified": "2022-10-21 15:28:15.385713",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Employee Attendance",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "employee_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "employee_name",
+ "track_changes": 1
+}

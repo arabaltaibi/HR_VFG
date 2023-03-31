@@ -1,0 +1,201 @@
+{
+ "autoname": "OT.#####",
+ "creation": "2022-04-12 17:58:08.824595",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "month",
+  "data_3",
+  "data_8",
+  "employee_name",
+  "employee_detail_section",
+  "company",
+  "column_break_8",
+  "department",
+  "column_break_10",
+  "designation",
+  "section_break_4",
+  "table_4",
+  "section_break_12",
+  "total_actual_over_time",
+  "column_break_16",
+  "total_adjusted_over_time",
+  "section_break_18",
+  "reason",
+  "owner_user",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "month",
+   "fieldtype": "Select",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Month",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
+   "reqd": 1
+  },
+  {
+   "fieldname": "data_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_4",
+   "fieldtype": "Table",
+   "options": "Over Time CT"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Over Time",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "data_8",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "data_8.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "owner_user",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Owner User",
+   "options": "User"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Over Time",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Detail"
+  },
+  {
+   "fetch_from": "data_8.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "data_8.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "data_8.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_actual_over_time",
+   "fieldtype": "Float",
+   "label": "Total Actual Over Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_adjusted_over_time",
+   "fieldtype": "Float",
+   "label": "Total Adjusted Over Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-04-29 20:51:09.596490",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Over Time",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "month",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "month",
+ "track_changes": 1
+}

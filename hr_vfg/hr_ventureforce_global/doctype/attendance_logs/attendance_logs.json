@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "creation": "2018-12-17 15:30:21.968188",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "attendance",
+  "biometric_id",
+  "attendance_date",
+  "attendance_time",
+  "type",
+  "ip"
+ ],
+ "fields": [
+  {
+   "fieldname": "attendance",
+   "fieldtype": "Small Text",
+   "label": "Attendance"
+  },
+  {
+   "fieldname": "biometric_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Biometric ID"
+  },
+  {
+   "fieldname": "attendance_date",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Attendance Date"
+  },
+  {
+   "fieldname": "attendance_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Attendance Time"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "ip",
+   "fieldtype": "Data",
+   "label": "IP"
+  }
+ ],
+ "links": [],
+ "modified": "2022-05-21 19:16:50.695058",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Attendance Logs",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

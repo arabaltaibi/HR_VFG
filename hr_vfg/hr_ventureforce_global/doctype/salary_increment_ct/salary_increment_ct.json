@@ -1,0 +1,70 @@
+{
+ "creation": "2022-03-30 21:24:23.277586",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "increment_date",
+  "increment_type",
+  "previous_salary",
+  "column_break_4",
+  "increment_per",
+  "after_increment_salary"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "increment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "increment_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Increment Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_salary",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Previous Salary",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "increment_per",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Increment %",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "after_increment_salary",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "After Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-03-30 22:00:29.742844",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Salary Increment CT",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
