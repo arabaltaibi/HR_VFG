@@ -1,0 +1,93 @@
+<h2 class="text-center">{%= __("EMPLOYEE INDIVIDUAL ATTENDENCE REPORT") %}</h2>
+<table>
+
+  <tr>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="6%" style="width: 2%;"></td>
+    <td width="3%"><b>Employee:</b></td>
+    <td width="10%"><b>{%= filters.employee %}</b></td>
+    <td width="6%" style="width: 2%;"></td>
+    
+    <td width="3%"><b>Month:</b></td>
+    <td colspan="15"><b>{%= filters.month %}</b></td>
+    <td width="0%">&nbsp;</td>
+  </tr>
+
+    {% if (filters.department) { %}
+    {% } %}
+   
+
+</table>
+<hr>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+            <th style="width: 12%">{%= __("Sr") %}</th>
+			<th style="width: 12%">{%= __("Code") %}</th>
+            <th style="width: 32%">{%= __("Name") %}</th>
+			<th style="width: 10%">{%= __("Dept") %}</th>
+            <th style="width: 10%">{%= __("Dsg") %}</th>
+			<th style="width: 15%">{%= __("Date") %}</th>
+			<th style="width: 12%">{%= __("Day") %}</th>
+            <th style="width: 20%">{%= __("Sch In Time") %}</th>
+            <th style="width: 18%">{%= __("Act In Time") %}</th>
+            <th style="width: 20%">{%= __("Sch Out Time") %}</th>
+            <th style="width: 18%">{%= __("Act out Time") %}</th>
+            <th style="width: 18%">{%= __("Late Arrival (min)") %}</th>
+            <th style="width: 18%">{%= __("Day Status") %}</th>
+            <th style="width: 18%">{%= __("Attn Status") %}</th>
+            <th style="width: 18%">{%= __("Work Hrs") %}</th>
+            <th style="width: 18%">{%= __("Total Hrs") %}</th>
+            <th style="width: 18%">{%= __("Overtime") %}</th>
+            <th style="width: 18%">{%= __("Leave Early (min)") %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=0, l=data.length; i<l; i++) { %}
+        {% if (i > 4) { %}
+        
+        <tr>
+              
+                <td style="border-color: #000">{%= i+1 %}</td>
+                <td style="border-color: #000">{%= data[i].emp_id %}</td>
+                
+                <td style="border-color: #000">{%= data[i].name %}</td>
+                <td style="border-color: #000">{%= data[i].department %}</td>
+                <td style="border-color: #000">{%= data[i].designation %}</td>
+                <td style="border-color: #000">{%= data[i].date %}</td>
+                <td style="border-color: #000">{%= data[i].day %}</td>
+                <td style="border-color: #000">{%= data[i].schedule_time_in %}</td>
+                <td style="border-color: #000">{%= data[i].actual_in_time %}</td>
+                <td style="border-color: #000">{%= data[i].schedule_time_out %}</td>
+                <td style="border-color: #000">{%= data[i].actual_out_time %}</td>
+                <td style="border-color: #000">{%= data[i].late_arrival %}</td>
+                <td style="border-color: #000">{%= data[i].day_status %}</td>
+             
+                <td style="border-color: #000">{%= data[i].att_status %}</td>
+                <td style="border-color: #000">{%= data[i].work_hours %}</td>
+                <td style="border-color: #000">{%= data[i].total_hours %}</td>
+                <td style="border-color: #000">{%= data[i].overtime %}</td>
+                <td style="border-color: #000">{%= data[i].early_going %}</td>
+                    
+					
+			</tr>
+            {% } %}
+		{% } %}
+	</tbody>
+</table>
+<p class="text-right text-muted">Printed On {%= frappe.datetime.str_to_user(frappe.datetime.get_datetime_as_string()) %}</p>

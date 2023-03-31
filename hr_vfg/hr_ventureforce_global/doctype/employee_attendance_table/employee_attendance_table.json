@@ -5,28 +5,46 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "date",
   "section_break_2",
+  "date",
+  "column_break_3",
   "check_in_1",
   "column_break_7",
   "check_out_1",
   "section_break_12",
   "difference",
+  "early_going_hours",
   "column_break_26",
+  "per_day_hour",
+  "late_coming_hours",
+  "column_break_13",
   "late_sitting",
-  "data_10",
-  "t",
+  "additional_hours",
   "section_break_26",
+  "night",
+  "sunday",
+  "holiday",
+  "night_switch",
+  "mark_absent",
+  "column_break_19",
   "late",
   "early",
   "half_day",
+  "mark_leave",
+  "column_break_25",
   "absent",
   "extra_working_hours_after_shift",
   "extra_absent",
+  "mark_half_day",
+  "section_break_31",
+  "ip",
   "total_ot_amount",
+  "column_break_35",
   "extra_absent_count",
   "early_going",
-  "type"
+  "column_break_38",
+  "type",
+  "approved_ot1"
  ],
  "fields": [
   {
@@ -44,7 +62,7 @@
   {
    "columns": 1,
    "fieldname": "check_in_1",
-   "fieldtype": "Data",
+   "fieldtype": "Read Only",
    "in_list_view": 1,
    "label": "Check In"
   },
@@ -55,7 +73,7 @@
   {
    "columns": 2,
    "fieldname": "check_out_1",
-   "fieldtype": "Data",
+   "fieldtype": "Read Only",
    "in_list_view": 1,
    "label": "Check Out"
   },
@@ -66,7 +84,7 @@
   {
    "columns": 2,
    "fieldname": "difference",
-   "fieldtype": "Data",
+   "fieldtype": "Read Only",
    "in_list_view": 1,
    "label": "Total Hours"
   },
@@ -77,12 +95,8 @@
   {
    "columns": 1,
    "fieldname": "late_sitting",
-   "fieldtype": "Data",
+   "fieldtype": "Read Only",
    "label": "Late Sitting"
-  },
-  {
-   "fieldname": "data_10",
-   "fieldtype": "Data"
   },
   {
    "fieldname": "section_break_26",
@@ -119,13 +133,15 @@
    "default": "0",
    "fieldname": "absent",
    "fieldtype": "Check",
-   "label": "Absent"
+   "label": "Absent",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "extra_working_hours_after_shift",
    "fieldtype": "Check",
-   "label": "Extra working hours after shift"
+   "label": "Extra Working Hours After Shift",
+   "read_only": 1
   },
   {
    "columns": 2,
@@ -133,13 +149,15 @@
    "fieldname": "extra_absent",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Extra Absent"
+   "label": "Extra Absent",
+   "read_only": 1
   },
   {
    "fieldname": "total_ot_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Total OT Amount"
+   "label": "Total OT Amount",
+   "read_only": 1
   },
   {
    "fieldname": "extra_absent_count",
@@ -156,17 +174,121 @@
   {
    "fieldname": "early_going",
    "fieldtype": "Int",
-   "label": "Early Going"
+   "label": "Early Going",
+   "read_only": 1
   },
   {
-   "fieldname": "t",
-   "fieldtype": "Data",
-   "label": "T"
+   "fieldname": "per_day_hour",
+   "fieldtype": "Read Only",
+   "label": "Per Day Hour"
+  },
+  {
+   "fieldname": "early_going_hours",
+   "fieldtype": "Read Only",
+   "label": "Early Going Hours"
+  },
+  {
+   "fieldname": "late_coming_hours",
+   "fieldtype": "Read Only",
+   "label": "Late Coming Hours"
+  },
+  {
+   "fieldname": "additional_hours",
+   "fieldtype": "Read Only",
+   "label": "Additional Hours"
+  },
+  {
+   "default": "0",
+   "fieldname": "night",
+   "fieldtype": "Check",
+   "label": "Night",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "sunday",
+   "fieldtype": "Check",
+   "label": "Sunday",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "holiday",
+   "fieldtype": "Check",
+   "label": "Holiday",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "night_switch",
+   "fieldtype": "Check",
+   "label": "Night Switch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ip",
+   "fieldtype": "Read Only",
+   "label": "IP"
+  },
+  {
+   "fieldname": "approved_ot1",
+   "fieldtype": "Time",
+   "label": "Approved OT",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "mark_absent",
+   "fieldtype": "Check",
+   "label": "Mark Absent",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "mark_half_day",
+   "fieldtype": "Check",
+   "label": "Mark Half Day",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "mark_leave",
+   "fieldtype": "Check",
+   "label": "Mark Leave",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_31",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2022-07-19 18:59:43.732569",
+ "modified": "2023-03-31 18:54:40.324284",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance Table",

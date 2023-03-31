@@ -1,14 +1,24 @@
 {
+ "actions": [],
  "creation": "2020-09-23 12:54:28.025600",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "day",
-  "start_time",
-  "end_time",
   "late_mark",
-  "half_day"
+  "data_4",
+  "start_time",
+  "half_day",
+  "column_break_6",
+  "end_time",
+  "over_time_start",
+  "data_8",
+  "max_early",
+  "minimum_hours_for_present",
+  "column_break_12",
+  "max_half_day",
+  "minimum_hours_for_half_day"
  ],
  "fields": [
   {
@@ -23,8 +33,7 @@
    "fieldname": "start_time",
    "fieldtype": "Time",
    "in_list_view": 1,
-   "label": "Start Time",
-   "search_index": 1
+   "label": "Start Time"
   },
   {
    "fieldname": "end_time",
@@ -46,10 +55,52 @@
    "in_list_view": 1,
    "label": "Half Day",
    "search_index": 1
+  },
+  {
+   "fieldname": "over_time_start",
+   "fieldtype": "Time",
+   "label": "Over Time"
+  },
+  {
+   "fieldname": "max_early",
+   "fieldtype": "Int",
+   "label": "Max Limit For Early going"
+  },
+  {
+   "fieldname": "max_half_day",
+   "fieldtype": "Int",
+   "label": "Max Limit for Half Day"
+  },
+  {
+   "fieldname": "minimum_hours_for_half_day",
+   "fieldtype": "Float",
+   "label": "Minimum Hours For Half Day"
+  },
+  {
+   "fieldname": "minimum_hours_for_present",
+   "fieldtype": "Float",
+   "label": "Minimum Hours For Present"
+  },
+  {
+   "fieldname": "data_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "data_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
   }
  ],
  "istable": 1,
- "modified": "2020-09-24 10:41:05.614042",
+ "links": [],
+ "modified": "2023-03-31 18:55:36.831235",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Shift Day",
