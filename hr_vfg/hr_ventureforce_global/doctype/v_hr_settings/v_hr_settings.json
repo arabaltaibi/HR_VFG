@@ -6,19 +6,135 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "maximum_lates_for_absent"
+  "maximum_lates_for_absent",
+  "payroll_period_section",
+  "period_from",
+  "column_break_4",
+  "period_to",
+  "absent_sandwich_section",
+  "absent_before_and_after_holiday",
+  "column_break_5",
+  "absent_before_holiday",
+  "column_break_7",
+  "absent_after_holiday",
+  "break_time_section",
+  "halfday_sandwich_section",
+  "late_and_early_mark",
+  "column_break_11",
+  "late__mark",
+  "column_break_13",
+  "early_mark",
+  "attendance_machines",
+  "attendance_machine"
  ],
  "fields": [
   {
    "fieldname": "maximum_lates_for_absent",
    "fieldtype": "Int",
    "label": "Maximum Lates For Absent"
+  },
+  {
+   "fieldname": "attendance_machine",
+   "fieldtype": "Table",
+   "options": "Attendance Machine"
+  },
+  {
+   "fieldname": "absent_sandwich_section",
+   "fieldtype": "Section Break",
+   "label": "Absent Sandwich"
+  },
+  {
+   "fieldname": "attendance_machines",
+   "fieldtype": "Section Break",
+   "label": "Attendance Machines"
+  },
+  {
+   "fieldname": "halfday_sandwich_section",
+   "fieldtype": "Section Break",
+   "label": "Halfday Sandwich"
+  },
+  {
+   "fieldname": "break_time_section",
+   "fieldtype": "Section Break",
+   "label": "Break Time"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "late_and_early_mark",
+   "fieldtype": "Check",
+   "label": "Late and Early Mark"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "late__mark",
+   "fieldtype": "Check",
+   "label": "Late  Mark"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "early_mark",
+   "fieldtype": "Check",
+   "label": "Early Mark"
+  },
+  {
+   "fieldname": "payroll_period_section",
+   "fieldtype": "Section Break",
+   "label": "Payroll Period "
+  },
+  {
+   "fieldname": "period_from",
+   "fieldtype": "Data",
+   "label": "Period From"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "period_to",
+   "fieldtype": "Data",
+   "label": "Period To"
+  },
+  {
+   "default": "0",
+   "fieldname": "absent_before_and_after_holiday",
+   "fieldtype": "Check",
+   "label": "Absent Before and After Holiday"
+  },
+  {
+   "default": "0",
+   "fieldname": "absent_before_holiday",
+   "fieldtype": "Check",
+   "label": "Absent Before Holiday"
+  },
+  {
+   "default": "0",
+   "fieldname": "absent_after_holiday",
+   "fieldtype": "Check",
+   "label": "Absent After Holiday"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-31 18:19:38.145359",
+ "modified": "2023-04-02 20:39:01.517234",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",

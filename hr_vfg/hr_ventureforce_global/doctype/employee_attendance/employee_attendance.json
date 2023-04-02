@@ -11,6 +11,7 @@
   "designation",
   "column_break_3",
   "employee_name",
+  "year",
   "unit",
   "column_break_7",
   "company",
@@ -19,39 +20,46 @@
   "section_break_5",
   "table1",
   "section_break_7",
-  "over_time",
-  "no_of_nights",
-  "total_adjusted_over_time",
   "present_days",
-  "extra_hours",
-  "approved_ot",
-  "month_days",
-  "late_plus_early_hours_",
-  "late_early_adjustment",
-  "total_early_going_hours",
-  "total_working_hours",
-  "early_over_time",
-  "column_break_13",
-  "hours_worked",
-  "short_hours",
-  "holiday_hour",
-  "column_break_16",
-  "difference",
-  "late_sitting_hours",
-  "section_break_15",
-  "total_absents",
-  "total_early_goings",
-  "column_break_22",
-  "total_half_days",
-  "extra_ot_amount",
-  "column_break_18",
   "total_lates",
-  "late_adjusted_absents",
-  "deduction_hours",
   "adjusted_late_half_days",
+  "cb18",
+  "total_absents",
+  "total_half_days",
   "late_absent",
+  "column_break_13",
+  "no_of_sundays",
+  "total_early_goings",
+  "column_break_25",
+  "month_days",
+  "late_adjusted_absents",
+  "section_break_28",
+  "total_working_hours",
+  "over_time",
+  "total_adjusted_over_time",
   "holiday_halfday_ot",
-  "holiday_full_day_ot"
+  "column_break_16",
+  "hours_worked",
+  "late_sitting_hours",
+  "approved_ot",
+  "holiday_full_day_ot",
+  "column_break_22",
+  "difference",
+  "holiday_hour",
+  "extra_hours",
+  "column_break_43",
+  "no_of_nights",
+  "early_over_time",
+  "extra_ot_amount",
+  "section_break_15",
+  "short_hours",
+  "deduction_hours",
+  "column_break_18",
+  "late_plus_early_hours_",
+  "column_break_52",
+  "late_early_adjustment",
+  "column_break_54",
+  "total_early_going_hours"
  ],
  "fields": [
   {
@@ -72,7 +80,7 @@
    "fetch_from": "employee.branch",
    "fieldname": "unit",
    "fieldtype": "Read Only",
-   "label": "Unit"
+   "label": "Branch"
   },
   {
    "fetch_from": "employee.company_email",
@@ -143,8 +151,7 @@
    "fieldname": "difference",
    "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Difference",
-   "read_only": 1
+   "label": "Difference"
   },
   {
    "fieldname": "late_sitting_hours",
@@ -154,8 +161,7 @@
   {
    "collapsible": 1,
    "fieldname": "section_break_15",
-   "fieldtype": "Section Break",
-   "label": "Days Calculation"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "total_absents",
@@ -165,8 +171,7 @@
   {
    "fieldname": "total_lates",
    "fieldtype": "Data",
-   "label": "Total Lates",
-   "read_only": 1
+   "label": "Total Lates"
   },
   {
    "fieldname": "column_break_18",
@@ -175,20 +180,16 @@
   {
    "fieldname": "total_early_goings",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Total Early Goings",
-   "read_only": 1
+   "label": "Total Early Goings"
   },
   {
    "fieldname": "total_half_days",
    "fieldtype": "Data",
-   "label": "Total Half Days",
-   "read_only": 1
+   "label": "Total Half Days"
   },
   {
    "fieldname": "late_adjusted_absents",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Late Adjusted Absents"
   },
   {
@@ -224,15 +225,12 @@
   {
    "fieldname": "extra_ot_amount",
    "fieldtype": "Currency",
-   "hidden": 1,
-   "label": "Extra OT Amount",
-   "read_only": 1
+   "label": "Extra OT Amount"
   },
   {
    "fieldname": "early_over_time",
    "fieldtype": "Data",
-   "label": "Early Over Time",
-   "read_only": 1
+   "label": "Early Over Time"
   },
   {
    "fieldname": "holiday_hour",
@@ -266,7 +264,7 @@
   {
    "fieldname": "present_days",
    "fieldtype": "Data",
-   "label": "present_days"
+   "label": "Total Present Days"
   },
   {
    "fieldname": "extra_hours",
@@ -281,22 +279,22 @@
   {
    "fieldname": "month_days",
    "fieldtype": "Data",
-   "label": "month_days"
+   "label": "Total Month Days"
   },
   {
    "fieldname": "late_plus_early_hours_",
    "fieldtype": "Data",
-   "label": "late_plus_early_hours_"
+   "label": "Late + Early Hours"
   },
   {
    "fieldname": "late_early_adjustment",
    "fieldtype": "Data",
-   "label": "late_early_adjustment"
+   "label": "Late Early Adjustment"
   },
   {
    "fieldname": "total_early_going_hours",
    "fieldtype": "Data",
-   "label": "total_early_going_hours"
+   "label": "Total Early Going Hours"
   },
   {
    "fieldname": "deduction_hours",
@@ -306,7 +304,7 @@
   {
    "fieldname": "adjusted_late_half_days",
    "fieldtype": "Data",
-   "label": "adjusted_late_half_days"
+   "label": "Late Half days"
   },
   {
    "fieldname": "late_absent",
@@ -322,10 +320,45 @@
    "fieldname": "holiday_full_day_ot",
    "fieldtype": "Data",
    "label": "holiday_full_day_ot"
+  },
+  {
+   "fieldname": "cb18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "no_of_sundays",
+   "fieldtype": "Data",
+   "label": "Total Holidays"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_28",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Select",
+   "label": "Year",
+   "options": "\n2023\n2024\n2025"
+  },
+  {
+   "fieldname": "column_break_43",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_52",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_54",
+   "fieldtype": "Column Break"
   }
  ],
  "links": [],
- "modified": "2023-03-31 22:16:03.267138",
+ "modified": "2023-04-01 17:33:51.665351",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",
