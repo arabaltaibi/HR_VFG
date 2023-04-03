@@ -18,7 +18,11 @@
   "minimum_hours_for_present",
   "column_break_12",
   "max_half_day",
-  "minimum_hours_for_half_day"
+  "minimum_hours_for_half_day",
+  "section_break_15",
+  "calculate_late_hours_",
+  "column_break_17",
+  "calculate_early_hours"
  ],
  "fields": [
   {
@@ -64,7 +68,7 @@
   {
    "fieldname": "max_early",
    "fieldtype": "Int",
-   "label": "Max Limit For Early going"
+   "label": "Max Limit For Early Going"
   },
   {
    "fieldname": "max_half_day",
@@ -96,11 +100,31 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "calculate_late_hours_",
+   "fieldtype": "Select",
+   "label": "Calculate Late Hours",
+   "options": "\nShift Start\nLate Mark"
+  },
+  {
+   "fieldname": "calculate_early_hours",
+   "fieldtype": "Select",
+   "label": "Calculate Early Hours",
+   "options": "\nShift End\nExit Grace Period"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-03-31 18:55:36.831235",
+ "modified": "2023-04-03 18:11:13.903529",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Shift Day",

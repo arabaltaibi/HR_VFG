@@ -136,16 +136,16 @@ class EmployeeAttendance(Document):
                 
                 
                 if self.table1[ii].check_in_1:
-                    shift_req = frappe.get_all("Shift Request", filters={'employee': self.employee,
-                                                                        'from_date': ["<=", self.table1[ii].date], 'to_date': [">=", self.table1[ii].date]}, fields=["*"])
                     shift = None
-                    if len(shift_req) > 0:
-                        shift = shift_req[0].shift_type
+                    shift_ass = frappe.get_all("Shift Assignment", filters={'employee': self.employee,
+                                                                            'start_date': ["<=", getdate(self.table1[ii].date)],'end_date': [">=", getdate(self.table1[ii].date)]}, fields=["*"])
+                    if len(shift_ass) > 0:
+                        shift = shift_ass[0].shift_type
                     else:
                         shift_ass = frappe.get_all("Shift Assignment", filters={'employee': self.employee,
-                                                                                'date': ["<=", self.table1[ii].date]}, fields=["*"])
-                        if len(shift_ass) > 0:
-                            shift = shift_ass[0].shift_type
+                                                                            'start_date': ["<=", getdate(self.table1[ii].date)]}, fields=["*"])
+                    if len(shift_ass) > 0:
+                        shift = shift_ass[0].shift_type
                     if shift == None:
                         frappe.throw(_("No shift available for this employee"))
                     self.table1[ii].shift = shift
@@ -162,7 +162,7 @@ class EmployeeAttendance(Document):
                    
                     day_data = None
                     # frappe.msgprint(str(day_name))
-                    for day in shift_doc.days:
+                    for day in shift_doc.day:
                         # frappe.msgprint(str(day.day))
                         if day_name == day.day:
                             day_data = day
@@ -247,7 +247,7 @@ class EmployeeAttendance(Document):
 
                                 
 
-                    if first_in_time >= frappe.db.get_single_value('HR Settings', 'night_shift_start_time'):
+                    if first_in_time >= frappe.db.get_single_value('V HR Settings', 'night_shift_start_time'):
                         self.no_of_nights += 1
                    
 

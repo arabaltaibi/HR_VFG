@@ -24,6 +24,7 @@
   "late__mark",
   "column_break_13",
   "early_mark",
+  "night_shift_start_time",
   "attendance_machines",
   "attendance_machine"
  ],
@@ -128,13 +129,18 @@
    "fieldname": "absent_after_holiday",
    "fieldtype": "Check",
    "label": "Absent After Holiday"
+  },
+  {
+   "fieldname": "night_shift_start_time",
+   "fieldtype": "Time",
+   "label": "Night Shift Start Time"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-02 20:39:01.517234",
+ "modified": "2023-04-03 14:07:00.587310",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",
