@@ -12,11 +12,7 @@
   "column_break_4",
   "period_to",
   "absent_sandwich_section",
-  "absent_before_and_after_holiday",
-  "column_break_5",
-  "absent_before_holiday",
-  "column_break_7",
-  "absent_after_holiday",
+  "absent_sandwich",
   "break_time_section",
   "halfday_sandwich_section",
   "late_and_early_mark",
@@ -58,14 +54,6 @@
    "fieldname": "break_time_section",
    "fieldtype": "Section Break",
    "label": "Break Time"
-  },
-  {
-   "fieldname": "column_break_5",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_7",
-   "fieldtype": "Column Break"
   },
   {
    "default": "0",
@@ -113,34 +101,22 @@
    "label": "Period To"
   },
   {
-   "default": "0",
-   "fieldname": "absent_before_and_after_holiday",
-   "fieldtype": "Check",
-   "label": "Absent Before and After Holiday"
-  },
-  {
-   "default": "0",
-   "fieldname": "absent_before_holiday",
-   "fieldtype": "Check",
-   "label": "Absent Before Holiday"
-  },
-  {
-   "default": "0",
-   "fieldname": "absent_after_holiday",
-   "fieldtype": "Check",
-   "label": "Absent After Holiday"
-  },
-  {
    "fieldname": "night_shift_start_time",
    "fieldtype": "Time",
    "label": "Night Shift Start Time"
+  },
+  {
+   "fieldname": "absent_sandwich",
+   "fieldtype": "Select",
+   "label": "Absent Sandwich",
+   "options": "\nAbsent Before Holiday\nAbsent After Holiday\nAbsent Before and After Holiday"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-03 14:07:00.587310",
+ "modified": "2023-04-04 14:00:16.889645",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",
