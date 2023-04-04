@@ -1336,6 +1336,30 @@
    "_comments": null,
    "_liked_by": null,
    "_user_tags": null,
+   "creation": "2023-04-04 18:20:13.182825",
+   "default_value": null,
+   "doc_type": "Employee",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "unsubscribed",
+   "idx": 0,
+   "modified": "2023-04-04 18:20:13.182825",
+   "modified_by": "Administrator",
+   "name": "Employee-unsubscribed-hidden",
+   "owner": "Administrator",
+   "parent": null,
+   "parentfield": null,
+   "parenttype": null,
+   "property": "hidden",
+   "property_type": "Check",
+   "row_name": null,
+   "value": "1"
+  },
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
    "creation": "2023-03-31 22:06:05.505239",
    "default_value": null,
    "doc_type": "Employee",
@@ -1740,5 +1764,5 @@
    "value": "1"
   }
  ],
- "sync_on_migrate": 0
+ "sync_on_migrate": 1
 }
