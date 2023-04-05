@@ -18,7 +18,9 @@
   "minimum_hours_for_present",
   "column_break_12",
   "max_half_day",
-  "minimum_hours_for_half_day"
+  "minimum_hours_for_half_day",
+  "section_break_15",
+  "overtime_slabs"
  ],
  "fields": [
   {
@@ -96,11 +98,21 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "overtime_slabs",
+   "fieldtype": "Link",
+   "label": "Overtime Slabs",
+   "options": "Overtime Slab"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-04-04 12:44:26.940461",
+ "modified": "2023-04-05 16:16:48.436250",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Shift Day",
