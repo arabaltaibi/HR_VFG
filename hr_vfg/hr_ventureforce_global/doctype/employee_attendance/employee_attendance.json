@@ -30,26 +30,24 @@
   "column_break_13",
   "no_of_sundays",
   "total_early_goings",
+  "total_working_hours",
   "column_break_25",
   "month_days",
   "lates_for_absent",
-  "section_break_28",
-  "total_working_hours",
-  "over_time",
-  "holiday_halfday_ot",
-  "column_break_16",
   "hours_worked",
+  "time_calculation_section",
   "late_sitting_hours",
-  "approved_ot",
-  "holiday_full_day_ot",
-  "column_break_22",
-  "total_difference_hours",
   "holiday_hour",
   "extra_hours",
-  "column_break_43",
-  "time_calculation_section",
+  "column_break_22",
+  "over_time",
+  "holiday_halfday_ot",
+  "total_difference_hours",
   "column_break_44",
   "early_over_time",
+  "holiday_full_day_ot",
+  "column_break_43",
+  "approved_ot",
   "extra_ot_amount",
   "section_break_15",
   "short_hours",
@@ -119,13 +117,15 @@
    "read_only": 1
   },
   {
+   "bold": 1,
+   "collapsible": 1,
    "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Daily Attendance Table"
   },
   {
    "fieldname": "table1",
    "fieldtype": "Table",
-   "label": "Table",
    "options": "Employee Attendance Table"
   },
   {
@@ -196,10 +196,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_16",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "column_break_22",
    "fieldtype": "Column Break"
   },
@@ -214,7 +210,7 @@
   {
    "fieldname": "extra_ot_amount",
    "fieldtype": "Currency",
-   "label": "Extra OT Amount"
+   "label": "Extra Over Time Amount"
   },
   {
    "fieldname": "early_over_time",
@@ -309,19 +305,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_28",
-   "fieldtype": "Section Break",
-   "label": "Time Calculation"
-  },
-  {
    "fieldname": "year",
    "fieldtype": "Select",
    "label": "Year",
    "options": "\n2023\n2024\n2025"
-  },
-  {
-   "fieldname": "column_break_43",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "column_break_52",
@@ -355,11 +342,15 @@
   {
    "fieldname": "column_break_44",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_43",
+   "fieldtype": "Column Break"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2023-04-06 07:25:45.637045",
+ "modified": "2023-04-06 19:00:05.524117",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",
