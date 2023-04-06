@@ -12,9 +12,12 @@ from datetime import timedelta
 from datetime import date as dt
 import datetime as special
 import time
-from erpnext.hr.utils import get_holidays_for_employee
 from frappe.utils import cstr, flt,getdate, today, get_time
 import calendar
+from erpnext.hr.doctype.employee.employee import (
+	InactiveEmployeeStatusError,
+	get_holiday_list_for_employee,
+)
 
 
 class EmployeeAttendance(Document):
@@ -39,21 +42,28 @@ class EmployeeAttendance(Document):
         total_working_days=0
         present_days=0
         accun_holiday=0
-        try:
-            month = self.get_month_no(self.month)
-            year = self.year
-            _, num_days = calendar.monthrange(year, month)
-            first_day = dt(year, month, 1)
-            last_day = dt(year, month, num_days)
-            self.total_working_days = num_days -len(get_holidays_for_employee(self.employee,first_day,last_day))
-            self.no_of_sundays = len(get_holidays_for_employee(self.employee,first_day,last_day))
-        except:
-            pass
+        holidays = []
+        hr_settings = frappe.get_single('V HR Settings')
+        #try:
+        month = self.get_month_no(self.month)
+        year = int(self.year)
+        _, num_days = calendar.monthrange(year, month)
+        first_day = dt(year, month, 1)
+        last_day = dt(year, month, num_days)
+        if hr_settings.period_from != 1:
+            first_day = dt(year, month-1, int(hr_settings.period_from))
+            last_day = dt(year, month, int(hr_settings.period_to))
+        holidays = get_holidays_for_employee(self.employee,first_day,last_day)
+        self.total_working_days = num_days -len(holidays)
+        self.no_of_sundays = len(holidays)
+        self.month_days = num_days
+        # except:
+        #     pass
         holiday_flag = False
         leave_flag = False
         total_holiday_hours = 0
         previous = None
-        hr_settings = frappe.get_single('V HR Settings')
+       
         for data in self.table1:
             first_in_time = timedelta(hours=1,minutes=0,seconds=0)
             first_out_time = timedelta(hours=1,minutes=0,seconds=0)
@@ -64,10 +74,18 @@ class EmployeeAttendance(Document):
             data.early = 0
             data.total_ot_amount = 0
             tempdate = data.date
-            if str(getdate(data.date)) in get_holidays_for_employee(self.employee,tempdate,tempdate):
+           
+            if str(getdate(data.date)) in [str(d.holiday_date) for d in holidays]:
                         holiday_flag = True
-                        data.holiday = 1
-                        if hr_settings.absent_sandwich in ['Absent Before Holiday','Absent Before and After Holiday']:
+                        data.public_holiday = 0
+                        data.weekly_off = 0
+                        for h in holidays:
+                            if str(getdate(data.date)) == str(h.holiday_date):
+                                if h.public_holiday == 1:
+                                    data.public_holiday = 1
+                                break
+                        if data.public_holiday == 0: data.weekly_off = 1
+                        if hr_settings.absent_sandwich in ['Absent Before weekly_off','Absent Before and After weekly_off']:
                             if previous and previous.absent == 1:
                                 p_date = previous.date
                                 lv = frappe.get_all("Leave Application", filters={"from_date":["<=",p_date],"to_date":[">=",p_date],"employee":self.employee,"status":"Approved"},fields=["*"])
@@ -77,8 +95,7 @@ class EmployeeAttendance(Document):
                                     data.absent=1
                                     total_absents+=1
           
-            if special.datetime.strptime(str(data.date).replace("-", " "), '%Y %m %d').weekday() == 6:
-                            data.sunday = 1
+            
             if not holiday_flag:
                 total_working_days+=1
             LA = frappe.get_all("Leave Application", filters={"from_date":["<=",tempdate],"to_date":[">=",tempdate],"employee":self.employee,"status":"Approved"},fields=["*"])
@@ -94,7 +111,11 @@ class EmployeeAttendance(Document):
                 hrs = timedelta(hours=0, minutes=0, seconds=0)
                 s_type =None
                 day_data = None
-               
+                if not data.check_in_1:
+                    data.check_in_1 = hr_settings.auto_fetch_check_in
+                if not data.check_out_1:
+                    data.check_out_1 = hr_settings.auto_fetch_check_out
+
                 if data.check_in_1 and data.check_out_1:
                     first_in_time = timedelta(hours=int(str(data.check_in_1).split(":")[0]),
                                               minutes=int(str(data.check_in_1).split(":")[1]))
@@ -139,7 +160,7 @@ class EmployeeAttendance(Document):
                             day_data = day
                             break
 
-                    if data.holiday == 1:
+                    if data.weekly_off == 1 or data.public_holiday == 1:
                         #settings required
                         if total_time:
                             total_holiday_hours+=round(
@@ -251,7 +272,7 @@ class EmployeeAttendance(Document):
                             if tmp >= float(day_data.max_early) and tmp < float(day_data.max_half_day):
                                 data.half_day = 1
                                 data.early = 0 
-                        elif (out_diff.total_seconds()/60) > float(day_data.max_half_day) and data.holiday==0:
+                        elif (out_diff.total_seconds()/60) > float(day_data.max_half_day) and data.weekly_off==0 and data.public_holiday == 0:
                             if first_out_time < day_data.end_time:
                                 data.absent = 1
                         else:
@@ -289,7 +310,7 @@ class EmployeeAttendance(Document):
                                 data.late_sitting = data.late_sitting + data.late_sitting
 
                 else:
-                    if data.holiday==0:
+                    if data.weekly_off==0 and data.public_holiday == 0:
                         data.absent = 1 
                         data.late = 0
                         data.half_day = 0
@@ -322,9 +343,9 @@ class EmployeeAttendance(Document):
                         if day_data.calculate_early_hours == "Exit Grace Period":
                                     data.early_going_hours = data.early_going_hours - timedelta(hours=0,minutes=int(day_data.max_early),seconds=0)
                         total_early_going_hrs = total_early_going_hrs + data.early_going_hours
-                if data.holiday==1:
+                if data.weekly_off==1 or data.public_holiday == 1:
                      data.absent = 0 
-                if data.holiday==1: #and not data.check_in_1:
+                if data.weekly_off==1 or data.public_holiday == 1:
                      self.no_of_sundays+=1
                 if first_in_time:
                     if first_in_time >= timedelta(hours=get_time(hr_settings.night_shift_start_time).hour,minutes=get_time(hr_settings.night_shift_start_time).minute) or s_type == "Night":
@@ -352,7 +373,7 @@ class EmployeeAttendance(Document):
                 if total_time:    
                     total_hr_worked = total_hr_worked + total_time
                 
-                if data.late_sitting and data.holiday == 0:
+                if data.late_sitting and data.weekly_off == 0 and data.public_holiday == 0:
                     total_late_hr_worked = total_late_hr_worked + data.late_sitting
                 data.difference = total_time  
                 if holiday_flag == True and getdate(tempdate) <= getdate(today()):
@@ -429,8 +450,8 @@ class EmployeeAttendance(Document):
 
 def check_sanwich_after_holiday(previous,data,hr_settings):
     if data.absent == 1:
-        if hr_settings.absent_sandwich in ['Absent After Holiday','Absent Before and After Holiday']:
-                if previous and previous.holiday == 1:
+        if hr_settings.absent_sandwich in ['Absent After weekly_off','Absent Before and After weekly_off']:
+                if previous and previous.weekly_off == 1:
                     p_date = data.date
                     lv = frappe.get_all("Leave Application", filters={"from_date":["<=",p_date],"to_date":[">=",p_date],"employee":self.employee,"status":"Approved"},fields=["*"])
                     if len(lv) > 0:
@@ -438,3 +459,32 @@ def check_sanwich_after_holiday(previous,data,hr_settings):
                     else:
                         previous.absent=1
                         previous+=1
+
+
+
+def get_holidays_for_employee(
+	employee, start_date, end_date, raise_exception=True, only_non_weekly=False
+):
+	"""Get Holidays for a given employee
+
+	`employee` (str)
+	`start_date` (str or datetime)
+	`end_date` (str or datetime)
+	`raise_exception` (bool)
+	`only_non_weekly` (bool)
+
+	return: list of dicts with `holiday_date` and `description`
+	"""
+	holiday_list = get_holiday_list_for_employee(employee, raise_exception=raise_exception)
+
+	if not holiday_list:
+		return []
+
+	filters = {"parent": holiday_list, "holiday_date": ("between", [start_date, end_date])}
+
+	if only_non_weekly:
+		filters["weekly_off"] = False
+
+	holidays = frappe.get_all("Holiday", fields=["description","public_holiday", "holiday_date"], filters=filters)
+
+	return holidays

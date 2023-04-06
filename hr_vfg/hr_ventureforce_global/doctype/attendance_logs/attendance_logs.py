@@ -27,6 +27,27 @@ class AttendanceLogs(TransactionBase):
 
 		start_date = frappe.utils.get_first_day(self.attendance_date)
 		end_date = frappe.utils.get_last_day(self.attendance_date)
+		
+		hr_settings = frappe.get_single('V HR Settings')
+		if hr_settings.period_from != 1:
+			if frappe.utils.getdate(self.attendance_date).day < hr_settings.period_from:
+				tempDate  = frappe.utils.getdate(self.attendance_date)
+				if (tempDate.month-1) ==0:
+					start_date = frappe.utils.getdate(str(tempDate.year-1)+"-"+str((tempDate.month-1)+12)+"-"+str(hr_settings.period_from))
+				else:
+					start_date = frappe.utils.getdate(str(tempDate.year)+"-"+str((tempDate.month-1))+"-"+str(hr_settings.period_from))
+				end_date = frappe.utils.getdate(str(tempDate.year)+"-"+str(tempDate.month)+"-"+str(hr_settings.period_to))
+				month_ = mon[tempDate.month-1]
+		
+			else:
+				tempDate  = frappe.utils.getdate(self.attendance_date)
+				start_date = frappe.utils.getdate(str(tempDate.year)+"-"+str(tempDate.month)+"-"+str(hr_settings.period_from))
+				if tempDate.month == 12:
+					end_date = frappe.utils.getdate(str(tempDate.year+1)+"-"+str(1)+"-"+str(hr_settings.period_to))
+				else:
+					end_date = frappe.utils.getdate(str(tempDate.year)+"-"+str(tempDate.month+1)+"-"+str(hr_settings.period_to))
+				month_ = mon[tempDate.month]
+		
 		total_days = int(date_diff(end_date, start_date))+1
 
 		empl = frappe.db.sql(""" select name, employee_name, branch, department, user_id from `tabEmployee` where biometric_id=%s""", att_det[1])

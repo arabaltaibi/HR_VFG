@@ -25,7 +25,7 @@
   "halfday_sandwich_section",
   "late_and_early_mark",
   "column_break_11",
-  "late__mark",
+  "late_mark",
   "column_break_13",
   "early_mark",
   "section_break_23",
@@ -75,12 +75,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "0",
-   "fieldname": "late__mark",
-   "fieldtype": "Check",
-   "label": "Late  Mark"
-  },
-  {
    "fieldname": "column_break_13",
    "fieldtype": "Column Break"
   },
@@ -97,7 +91,7 @@
   },
   {
    "fieldname": "period_from",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Period From"
   },
   {
@@ -106,7 +100,7 @@
   },
   {
    "fieldname": "period_to",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Period To"
   },
   {
@@ -159,13 +153,19 @@
   {
    "fieldname": "section_break_23",
    "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "late_mark",
+   "fieldtype": "Check",
+   "label": "Late  Mark"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-05 16:11:07.086708",
+ "modified": "2023-04-06 17:26:04.744570",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",

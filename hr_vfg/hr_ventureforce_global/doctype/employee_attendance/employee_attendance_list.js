@@ -1,15 +1,9 @@
 frappe.listview_settings['Employee Attendance'] = {
 	colwidths: {"subject": 6},
 	onload: function(listview) {
-		var method = "erpnext.hr.doctype.attendance.auto_attendance.get_attendance";
-
-		var methods = "erpnext.hr.doctype.attendance.att_week.get_attendance_long";
-        var nm = "erpnext.hr.doctype.attendance.att_week.settle_night_s";
-		// listview.page.add_menu_item(__("Generate Attendance"), function() {
-		// 	listview.call_for_selected_items(method, {"status": "Open"});
-		// });
-
-
+	
+		var methods = "hr_vfg.hr_ventureforce_global.doctype.employee_attendance.attendance_connector.get_attendance_long";
+        
 				listview.page.add_menu_item(__("Get Attendance"), function() {
 					var dialog = new frappe.ui.Dialog({
 						title: __('Add Follow Up'),
@@ -37,8 +31,6 @@ frappe.listview_settings['Employee Attendance'] = {
 			
 		});
 
-		// listview.page.add_menu_item(__("Settle Night Shift"), function() {
-		// 	listview.call_for_selected_items(nm, {"status": "Open"});
-		// });
+	
 }
 }

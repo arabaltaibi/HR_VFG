@@ -338,7 +338,7 @@
   },
   {
    "fieldname": "lates_for_absent",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "Lates For Absent"
   },
   {
@@ -359,7 +359,7 @@
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2023-04-05 13:08:14.375485",
+ "modified": "2023-04-06 07:25:45.637045",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",

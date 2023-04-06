@@ -17,13 +17,15 @@
    "fieldname": "ip",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "IP"
+   "label": "IP",
+   "reqd": 1
   },
   {
    "fieldname": "port",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Port"
+   "label": "Port",
+   "reqd": 1
   },
   {
    "fieldname": "user",
@@ -42,13 +44,14 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "\nIn\nOut\nBoth"
+   "options": "\nIn\nOut\nBoth",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-04-01 15:26:47.162362",
+ "modified": "2023-04-06 11:38:23.403961",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Attendance Machine",
