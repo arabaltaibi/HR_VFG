@@ -7,10 +7,13 @@
  "engine": "InnoDB",
  "field_order": [
   "maximum_lates_for_absent",
+  "holiday_halfday_ot",
   "2_column",
   "maximum_lates_for_halfday",
+  "holiday_full_day_ot",
   "column_break_2",
   "double_overtime_after",
+  "threshold_for_additional_hours",
   "section_break_6",
   "auto_fetch_check_in",
   "8_column",
@@ -30,6 +33,8 @@
   "early_mark",
   "section_break_23",
   "night_shift_start_time",
+  "column_break_25",
+  "count_working_on_holiday_in_present_days",
   "attendance_machines",
   "attendance_machine"
  ],
@@ -139,7 +144,7 @@
   {
    "fieldname": "auto_fetch_check_in",
    "fieldtype": "Time",
-   "label": "Auto Fetch Check In"
+   "label": "Missing Auto Fetch Check In"
   },
   {
    "fieldname": "8_column",
@@ -148,7 +153,7 @@
   {
    "fieldname": "auto_fetch_check_out",
    "fieldtype": "Time",
-   "label": "Auto Fetch Check Out"
+   "label": "Missing Auto Fetch Check Out"
   },
   {
    "fieldname": "section_break_23",
@@ -159,13 +164,39 @@
    "fieldname": "late_mark",
    "fieldtype": "Check",
    "label": "Late  Mark"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Present",
+   "fieldname": "count_working_on_holiday_in_present_days",
+   "fieldtype": "Check",
+   "label": "Count Working on Holiday in Present Days",
+   "options": "\nPresent\nAbsent"
+  },
+  {
+   "fieldname": "threshold_for_additional_hours",
+   "fieldtype": "Int",
+   "label": "Additional Hours Threshold"
+  },
+  {
+   "fieldname": "holiday_halfday_ot",
+   "fieldtype": "Int",
+   "label": "Holiday Halfday Overtime"
+  },
+  {
+   "fieldname": "holiday_full_day_ot",
+   "fieldtype": "Int",
+   "label": "Holiday Full Day Overtime"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-06 17:26:04.744570",
+ "modified": "2023-04-08 18:34:18.637814",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",

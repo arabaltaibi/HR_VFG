@@ -34,9 +34,14 @@ class EmployeeAttendance(Document):
         total_early_going_hrs= timedelta(hours=0, minutes=0, seconds=0)
         total_late_coming_hours = timedelta(hours=0, minutes=0, seconds=0)
         total_additional_hours = timedelta(hours=0, minutes=0, seconds=0)
+        total_early_ot = timedelta(hours=0, minutes=0, seconds=0)
         required_working_hrs = 0.0
-        total_absents = 0
+        holiday_halfday_ot =0
+        holiday_full_day_ot =0
+        self.total_absents = 0
+        extra_ot_amount = 0
         holiday_doc = None
+        self.total_public_holidays = 0
         half_day_leave = None
         self.no_of_nights = 0
         total_working_days=0
@@ -55,15 +60,15 @@ class EmployeeAttendance(Document):
             last_day = dt(year, month, int(hr_settings.period_to))
         holidays = get_holidays_for_employee(self.employee,first_day,last_day)
         self.total_working_days = num_days -len(holidays)
-        self.no_of_sundays = len(holidays)
+        self.no_of_sundays = 0
         self.month_days = num_days
         # except:
         #     pass
         holiday_flag = False
         leave_flag = False
-        total_holiday_hours = 0
+        total_holiday_hours = timedelta(hours=1,minutes=0,seconds=0)
         previous = None
-       
+        index = 0
         for data in self.table1:
             first_in_time = timedelta(hours=1,minutes=0,seconds=0)
             first_out_time = timedelta(hours=1,minutes=0,seconds=0)
@@ -83,9 +88,10 @@ class EmployeeAttendance(Document):
                             if str(getdate(data.date)) == str(h.holiday_date):
                                 if h.public_holiday == 1:
                                     data.public_holiday = 1
+                                    self.total_public_holidays += 1
                                 break
                         if data.public_holiday == 0: data.weekly_off = 1
-                        if hr_settings.absent_sandwich in ['Absent Before weekly_off','Absent Before and After weekly_off']:
+                        if hr_settings.absent_sandwich in ['Absent Before Holiday']:
                             if previous and previous.absent == 1:
                                 p_date = previous.date
                                 lv = frappe.get_all("Leave Application", filters={"from_date":["<=",p_date],"to_date":[">=",p_date],"employee":self.employee,"status":"Approved"},fields=["*"])
@@ -93,7 +99,8 @@ class EmployeeAttendance(Document):
                                     pass
                                 else:
                                     data.absent=1
-                                    total_absents+=1
+                                    self.total_absents+=1
+                                    continue
           
             
             if not holiday_flag:
@@ -111,9 +118,9 @@ class EmployeeAttendance(Document):
                 hrs = timedelta(hours=0, minutes=0, seconds=0)
                 s_type =None
                 day_data = None
-                if not data.check_in_1:
+                if not data.check_in_1 and data.check_out_1:
                     data.check_in_1 = hr_settings.auto_fetch_check_in
-                if not data.check_out_1:
+                if not data.check_out_1 and data.check_in_1:
                     data.check_out_1 = hr_settings.auto_fetch_check_out
 
                 if data.check_in_1 and data.check_out_1:
@@ -163,14 +170,25 @@ class EmployeeAttendance(Document):
                     if data.weekly_off == 1 or data.public_holiday == 1:
                         #settings required
                         if total_time:
-                            total_holiday_hours+=round(
-                                        flt(total_time.total_seconds())/3600, 2)
-                            #settings required
-                            total_late_hr_worked = total_late_hr_worked + total_time
+                            total_holiday_hours += total_time
+                            
                     if not day_data:
                         data.difference = total_time
-                        check_sanwich_after_holiday(previous,data,hr_settings)
+                        check_sanwich_after_holiday(self,previous,data,hr_settings,index)
                         previous = data
+                        index+=1
+                        if data.absent == 0 and data.check_in_1:
+                            if holiday_flag:
+                                if hr_settings.count_working_on_holiday_in_present_days == 1:
+                                    present_days+=1
+                                if total_time:
+                                    if total_time >= timedelta(hours=hr_settings.holiday_halfday_ot,minutes=00,seconds=0) and \
+                                        total_time < timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                                        holiday_halfday_ot = holiday_halfday_ot + 1
+                                    elif total_time >= timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                                        holiday_full_day_ot = holiday_full_day_ot + 1
+                            else:
+                                present_days+=1
                         continue
                     
                     if day_data.end_time > first_out_time:
@@ -207,7 +225,9 @@ class EmployeeAttendance(Document):
                             in_diff[1]), seconds=float(in_diff[2]))
 
                     if first_in_time < day_data.start_time:
-                        first_in_time = day_data.start_time
+                        if first_in_time != timedelta(hours=0):
+                            total_early_ot = total_early_ot + (day_data.start_time - first_in_time )
+                            first_in_time = day_data.start_time
 
                     if first_in_time >= late_mark and first_in_time < half_day_time:
                         data.late = 1
@@ -308,6 +328,9 @@ class EmployeeAttendance(Document):
                         if data.late_sitting:
                             if data.late_sitting >= timedelta(hours=hr_settings.double_overtime_after,minutes=0,seconds=0):
                                 data.late_sitting = data.late_sitting + data.late_sitting
+                            if data.late_sitting > timedelta(hours=hr_settings.threshold_for_additional_hours,minutes=0,seconds=0):
+                                    data.additional_hours  =  data.late_sitting - timedelta(hours=hr_settings.threshold_for_additional_hours,minutes=0,seconds=0)
+                                    total_additional_hours = total_additional_hours + data.additional_hours
 
                 else:
                     if data.weekly_off==0 and data.public_holiday == 0:
@@ -319,15 +342,18 @@ class EmployeeAttendance(Document):
                 if total_time:
                     total_time_hours = total_time.total_seconds()/3600
                     if total_time_hours >= day_data.minimum_hours_for_present:
-                        data.absent = 0
-                        data.half_day = 0
+                        if day_data.minimum_hours_for_present > 0:
+                            data.absent = 0
+                            data.half_day = 0
                     elif total_time_hours >= day_data.minimum_hours_for_half_day:
-                        data.half_day = 1
+                        if day_data.minimum_hours_for_half_day > 0:
+                            data.half_day = 1
                     else:
-                        data.absent = 1
-                        data.half_day = 0
-                        data.early = 0
-                        data.late = 0
+                        if day_data.minimum_hours_for_half_day > 0 and day_data.minimum_hours_for_present > 0:
+                            data.absent = 1
+                            data.half_day = 0
+                            data.early = 0
+                            data.late = 0
                 if hr_settings.late_and_early_mark:
                     if data.early==1 and data.late == 1:
                         data.half_day = 1
@@ -345,8 +371,7 @@ class EmployeeAttendance(Document):
                         total_early_going_hrs = total_early_going_hrs + data.early_going_hours
                 if data.weekly_off==1 or data.public_holiday == 1:
                      data.absent = 0 
-                if data.weekly_off==1 or data.public_holiday == 1:
-                     self.no_of_sundays+=1
+                
                 if first_in_time:
                     if first_in_time >= timedelta(hours=get_time(hr_settings.night_shift_start_time).hour,minutes=get_time(hr_settings.night_shift_start_time).minute) or s_type == "Night":
                         data.night = 1
@@ -362,29 +387,61 @@ class EmployeeAttendance(Document):
                     total_half_days += 1
               
                 if data.absent == 1:
-                    total_absents +=1
+                    self.total_absents +=1
                 if data.half_day == 1:
                     if data.absent == 1:
                         data.absent = 0
-                        total_absents -=1
-                if data.absent == 0 and data.check_in_1 and not holiday_flag:
-                    present_days+=1
+                        self.total_absents -=1
+                if data.absent == 0 and data.check_in_1:
+                    if holiday_flag:
+                        if hr_settings.count_working_on_holiday_in_present_days == 1:
+                            present_days+=1
+                    else:
+                     present_days+=1
+                
 
                 if total_time:    
                     total_hr_worked = total_hr_worked + total_time
                 
                 if data.late_sitting and data.weekly_off == 0 and data.public_holiday == 0:
                     total_late_hr_worked = total_late_hr_worked + data.late_sitting
+                    if day_data.overtime_slabs:
+                        OT_slabs = frappe.get_doc("Overtime Slab",day_data.overtime_slabs)
+                        late_hours = round(
+                                    flt((data.late_sitting).total_seconds())/3600, 2)
+                       
+                        amount = 0
+                        for sl in OT_slabs.slabs:
+                            if flt(late_hours) <= flt(sl.hours):
+                                
+                                amount  = sl.amount
+                            elif flt(sl.hours) > flt(late_hours):
+                                break
+                        data.total_ot_amount = amount
+                        extra_ot_amount+=amount
+
+                
+
                 data.difference = total_time  
                 if holiday_flag == True and getdate(tempdate) <= getdate(today()):
                     accun_holiday+=1
                 if data.extra_absent:
-                    total_absents+=1
+                    self.total_absents+=1
                
+                if holiday_flag:
+                     self.no_of_sundays+=1
+                     if total_time:
+                                    if total_time >= timedelta(hours=hr_settings.holiday_halfday_ot,minutes=00,seconds=0) and \
+                                        total_time < timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                                        holiday_halfday_ot = holiday_halfday_ot + 1
+                                    elif total_time >= timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                                        holiday_full_day_ot = holiday_full_day_ot + 1
                 half_day_leave = False
                 holiday_flag = False
-                check_sanwich_after_holiday(previous,data,hr_settings)
+                check_sanwich_after_holiday(self,previous,data,hr_settings,index)
+               
                 previous = data
+                index+=1
                
             except:
                 frappe.log_error(frappe.get_traceback(),"Attendance")
@@ -395,7 +452,8 @@ class EmployeeAttendance(Document):
             flt((total_hr_worked-total_late_hr_worked).total_seconds())/3600, 2)
         self.late_sitting_hours = round(
             flt(total_late_hr_worked.total_seconds())/3600, 2)
-        #self.over_time = 0
+        self.holiday_halfday_ot = holiday_halfday_ot
+        self.holiday_full_day_ot = holiday_full_day_ot
         self.over_time = self.late_sitting_hours
         # self.difference = round(
         #     (flt(self.hours_worked)-flt(required_working_hrs)), 2)
@@ -408,16 +466,13 @@ class EmployeeAttendance(Document):
         
         self.extra_hours = round(
             flt(total_additional_hours.total_seconds())/3600, 2)
-        self.total_absents = total_absents
+        self.extra_ot_amount = extra_ot_amount
         self.total_lates = total_lates
         self.total_early_goings = total_early
         self.total_half_days = total_half_days
         self.total_early_going_hours = total_early_going_hrs
-        self.holiday_hour = total_holiday_hours
-        if self.holiday_hour >= 1:
-            self.holiday_hour = round(self.holiday_hour)
-        else:
-            self.holiday_hour = 0.0
+        self.holiday_hour = round(flt(total_holiday_hours.total_seconds())/3600, 2)
+        self.early_over_time = round(flt(total_early_ot.total_seconds())/3600, 2)
         t_lat = 0
         t_earl = 0
         if hr_settings.maximum_lates_for_absent > 0:
@@ -425,10 +480,15 @@ class EmployeeAttendance(Document):
         self.lates_for_absent = t_earl + t_lat
        
         self.short_hours = self.difference
-
+       
         self.total_working_hours = round(required_working_hrs,2)
+        self.total_difference_hours = round(self.total_working_hours - self.hours_worked,2)
+        self.late_plus_early_hours_ = total_late_coming_hours + self.total_early_going_hours
         self.present_days = present_days 
-        self.lates_for_halfday = int(total_lates-hr_settings.maximum_lates_for_halfday) if total_lates > hr_settings.maximum_lates_for_halfday  else 0
+        lfh = 0
+        if hr_settings.maximum_lates_for_halfday > 0:
+            lfh = int(total_lates/hr_settings.maximum_lates_for_halfday) if total_lates >= hr_settings.maximum_lates_for_halfday else 0
+        self.lates_for_halfday = lfh
 
     def get_month_no(self, month):
         dict_={
@@ -448,17 +508,33 @@ class EmployeeAttendance(Document):
         return dict_[month]
     
 
-def check_sanwich_after_holiday(previous,data,hr_settings):
+def check_sanwich_after_holiday(self, previous,data,hr_settings,index):
+    ab_index = []
+    ab_index_process = False
     if data.absent == 1:
-        if hr_settings.absent_sandwich in ['Absent After weekly_off','Absent Before and After weekly_off']:
-                if previous and previous.weekly_off == 1:
-                    p_date = data.date
-                    lv = frappe.get_all("Leave Application", filters={"from_date":["<=",p_date],"to_date":[">=",p_date],"employee":self.employee,"status":"Approved"},fields=["*"])
-                    if len(lv) > 0:
-                        pass
-                    else:
-                        previous.absent=1
-                        previous+=1
+        for num in reversed(range(index)) :
+            if self.table1[num].weekly_off ==1 or self.table1[num].public_holiday==1:
+                ab_index.append(num)
+            else:
+                if hr_settings.absent_sandwich == 'Absent After Holiday':
+                    ab_index_process = True
+                    break
+                elif hr_settings.absent_sandwich == 'Absent Before and After Holiday' and self.table1[num].absent == 1:
+                        ab_index_process = True
+                        break
+            
+    if ab_index_process:
+        for ind in ab_index:
+                if self.table1[ind].absent != 1:
+                    self.table1[ind].absent = 1
+                    self.no_of_sundays-=1
+                    if self.table1[ind].difference:
+                        if self.table1[ind].difference >= timedelta(hours=hr_settings.holiday_halfday_ot,minutes=00,seconds=0) and \
+                            self.table1[ind].difference < timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                           self.holiday_halfday_ot = self.holiday_halfday_ot - 1
+                        elif self.table1[ind].difference >= timedelta(hours=hr_settings.holiday_full_day_ot,minutes=00,seconds=0):
+                            self.holiday_full_day_ot = self.holiday_full_day_ot - 1
+                    self.total_absents += 1
 
 
 

@@ -28,6 +28,7 @@ class AttendanceLogs(TransactionBase):
 		start_date = frappe.utils.get_first_day(self.attendance_date)
 		end_date = frappe.utils.get_last_day(self.attendance_date)
 		
+		
 		hr_settings = frappe.get_single('V HR Settings')
 		if hr_settings.period_from != 1:
 			if frappe.utils.getdate(self.attendance_date).day < hr_settings.period_from:
@@ -48,12 +49,13 @@ class AttendanceLogs(TransactionBase):
 					end_date = frappe.utils.getdate(str(tempDate.year)+"-"+str(tempDate.month+1)+"-"+str(hr_settings.period_to))
 				month_ = mon[tempDate.month]
 		
+		year  = end_date.year
 		total_days = int(date_diff(end_date, start_date))+1
 
 		empl = frappe.db.sql(""" select name, employee_name, branch, department, user_id from `tabEmployee` where biometric_id=%s""", att_det[1])
 		if empl:
-			res = frappe.db.sql(""" select name from `tabEmployee Attendance` where employee=%s and month=%s""",
-						(empl[0][0], month_))
+			res = frappe.db.sql(""" select name from `tabEmployee Attendance` where employee=%s and month=%s and year=%s""",
+						(empl[0][0], month_,year))
 			if res:
 				if self.type == "Check In":
 					doc = frappe.get_doc("Employee Attendance", res[0][0])
@@ -99,6 +101,7 @@ class AttendanceLogs(TransactionBase):
 				doc.employee_name = empl[0][1]
 				doc.biometric_id = att_det[1]
 				doc.month = month_
+				doc.year = year
 				da = start_date
 				doc.unit = empl[0][2]
 				doc.department = empl[0][3]

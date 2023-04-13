@@ -87,9 +87,9 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Payroll Entry": "hr_vfg.hr_ventureforce_global.payroll_entry_override.CustomPayrollEntry"
+}
 
 # Document Events
 # ---------------
@@ -132,9 +132,9 @@ app_license = "MIT"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "hr_vfg.event.get_events"
-# }
+override_whitelisted_methods = {
+	"erpnext.payroll.doctype.payroll_entry.payroll_entry.create_salary_slips": "hr_vfg.hr_ventureforce_global.custom_events.create_salary_slips"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

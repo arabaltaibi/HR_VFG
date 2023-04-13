@@ -46,6 +46,7 @@
   "column_break_44",
   "early_over_time",
   "holiday_full_day_ot",
+  "total_public_holidays",
   "column_break_43",
   "approved_ot",
   "extra_ot_amount",
@@ -346,11 +347,16 @@
   {
    "fieldname": "column_break_43",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_public_holidays",
+   "fieldtype": "Int",
+   "label": "Total Public Holidays"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2023-04-06 19:00:05.524117",
+ "modified": "2023-04-08 18:37:33.330313",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",

@@ -1,0 +1,602 @@
+{
+ "autoname": "ER.#######",
+ "creation": "2019-05-21 17:18:54.884468",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "3_section",
+  "1_column",
+  "requisition_date",
+  "status",
+  "column_break_5",
+  "requisition_for_name_of_company_project",
+  "requisition_received_on",
+  "2_section",
+  "request_by_name",
+  "unit",
+  "sub_department",
+  "column_break_12",
+  "requested_by",
+  "requisition_priority",
+  "department_main",
+  "section_break_15",
+  "job_title",
+  "salary_range",
+  "employment_status_section",
+  "for_how_long",
+  "column_break_20",
+  "unit1",
+  "department",
+  "machine",
+  "no_of_vacancies",
+  "section_break_25",
+  "reason",
+  "employee_name",
+  "column_break_28",
+  "salary",
+  "left_on",
+  "state_brief",
+  "section_break_32",
+  "small_text_33",
+  "desired_candidate_profile_section",
+  "age_bracket",
+  "minimum_qualification",
+  "column_break_37",
+  "experienced_in",
+  "experience_period",
+  "section_break_40",
+  "computers_operations_column",
+  "ms_office",
+  "quick_book",
+  "gp",
+  "point_of_sale",
+  "others",
+  "please_specify",
+  "background_information_column",
+  "accounting_cycle",
+  "payroll_management",
+  "auditing",
+  "taxation",
+  "others1",
+  "please_specify1",
+  "management_organization_column",
+  "supervision",
+  "problem_solving",
+  "work_management",
+  "responsible",
+  "others2",
+  "please_specify2",
+  "communication_column",
+  "telephonic",
+  "face_to_face",
+  "emails",
+  "reports",
+  "others3",
+  "please_specify3",
+  "section_break_69",
+  "small_text_70",
+  "section_break_71",
+  "shift_resource_from_machine",
+  "column_break_73",
+  "shift_resource_from_sub_department",
+  "column_break_75",
+  "go_for_hiring",
+  "section_break_77",
+  "candidate_name",
+  "salary1",
+  "column_break_81",
+  "date_of_joining",
+  "hr_reference_no",
+  "amended_from",
+  "interview_call_logs_section",
+  "table_87"
+ ],
+ "fields": [
+  {
+   "fieldname": "3_section",
+   "fieldtype": "Section Break",
+   "label": "<h1 style=\"text-align: center; color: #ED1C24; font-weight: bold; font-family: tahoma;\">RESOURCES UNIT</h1>"
+  },
+  {
+   "fieldname": "1_column",
+   "fieldtype": "Column Break",
+   "label": "<h2 style=\"text-align: center; color: black; font-weight: bold; font-family: tahoma;\">Staff Requisition Form</h2><br><br>"
+  },
+  {
+   "fieldname": "requisition_date",
+   "fieldtype": "Date",
+   "label": "Requisition Date :"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nSend To HOD\nSend To HRD\nSubmit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break",
+   "label": "<br><br><br><br><br>"
+  },
+  {
+   "fieldname": "requisition_for_name_of_company_project",
+   "fieldtype": "Data",
+   "label": "Requisition For (Name Of Company/Project):"
+  },
+  {
+   "fieldname": "requisition_received_on",
+   "fieldtype": "Date",
+   "label": "Requisition Received on :"
+  },
+  {
+   "fieldname": "2_section",
+   "fieldtype": "Section Break",
+   "label": "<h3>Requisition Initiator Details</h3>"
+  },
+  {
+   "fetch_from": "requested_by.employee_name",
+   "fieldname": "request_by_name",
+   "fieldtype": "Read Only",
+   "label": "Request by Name"
+  },
+  {
+   "fetch_from": "requested_by.branch",
+   "fieldname": "unit",
+   "fieldtype": "Data",
+   "label": "Unit",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "requested_by.department",
+   "fieldname": "sub_department",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sub-Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "label": "Requested By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "requisition_priority",
+   "fieldtype": "Select",
+   "label": "Requisition Priority",
+   "options": "Select\nHigh\nMedium\nLow"
+  },
+  {
+   "fetch_from": "requested_by.department",
+   "fieldname": "department_main",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break",
+   "label": "<h3>Job Profile</h3>"
+  },
+  {
+   "fieldname": "job_title",
+   "fieldtype": "Link",
+   "label": "Job Title",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "salary_range",
+   "fieldtype": "Select",
+   "label": "Salary Range",
+   "options": "Select\n10K to 12K\n12K to 15K\n15K to 18K\n18K to 25K\n25K to 35K"
+  },
+  {
+   "fieldname": "employment_status_section",
+   "fieldtype": "Select",
+   "label": "Employment Status",
+   "options": "Select\nPermanent\nTemporary"
+  },
+  {
+   "depends_on": "eval:doc.employment_status == \"Temporary\"",
+   "fieldname": "for_how_long",
+   "fieldtype": "Select",
+   "label": "For How Long",
+   "options": "Select\n1 Month\n2 Months\n3 Months\n4 Months\n5 Months\n6 Months\n7 Months\n8 Months\n9 Months\n10 Months\n11 Months\n12 Months"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit1",
+   "fieldtype": "Link",
+   "label": "Sub-Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "unit1.parent_department",
+   "fieldname": "department",
+   "fieldtype": "Read Only",
+   "label": "Department"
+  },
+  {
+   "fieldname": "machine",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Machine ",
+   "options": "Select\nJIANSHE\nMC FLURY\nKFC-16\n5 Lit Bucket\n12 Onse\n6*6 ML UNILEVER\n2* Machine 100 ML UNILEVER\n10-12 D/WALL\n22 OUNCE KFC\nONE LITRE KFC\n100 ML UNILEVER\n400 ML KFC\n4* Machine PIA\n3 LIT BUCKET\n250-300 ML\n4*Machine PIA\n6 OUNCE PESHAWARI\nNESTLE 10 OUNCE\nLK-106-MF DIE CUTTING\nBOBST,102 DIE CUTTING\nBOBST 1080\nDC-004 HAND FIT\nDC-002 HAND FIT\nDC-003 HAND FIt\nPOOLER PAPER CUTTING\nGLUE PASTING\nBRAUSE TA9000-C3 GLUE PASTING\nExtruder\nInjection Moulding\nThermo Forming\nLid Forming\nPrinting\nSpoon Packing\nCrusher\nHEIDELBERG\nCPC-003 HEIDELBERG SPEED MASTER 4 COLOR 28*40\nFLEXO-001\nCPC-004 HEIDELBERF SPEED MASTER 4 COLOR 24*40\u201d\nCPC-005 HEIDELBERF SPEED MASTER 4 COLOR 24*40\u201d\nCPC-008 HEIDELBERF SPEED MASTER 4 COLOR 24*40\""
+  },
+  {
+   "fieldname": "no_of_vacancies",
+   "fieldtype": "Int",
+   "label": "No of Vacancies"
+  },
+  {
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break",
+   "label": "<h3>Reason for Requirement</h3>"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Select",
+   "label": "Reason",
+   "options": "Select\nReplacement\nNew Position"
+  },
+  {
+   "depends_on": "eval:doc.reason == \"Replacement\"",
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "label": "Employee Name",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.reason == \"Replacement\"",
+   "fieldname": "salary",
+   "fieldtype": "Currency",
+   "label": "Salary"
+  },
+  {
+   "depends_on": "eval:doc.reason == \"Replacement\"",
+   "fieldname": "left_on",
+   "fieldtype": "Date",
+   "label": "Left On"
+  },
+  {
+   "depends_on": "eval:doc.reason == \"New Position\"",
+   "fieldname": "state_brief",
+   "fieldtype": "Small Text",
+   "label": "State Brief"
+  },
+  {
+   "fieldname": "section_break_32",
+   "fieldtype": "Section Break",
+   "label": "<h3>Job Description</h3>"
+  },
+  {
+   "fieldname": "small_text_33",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "desired_candidate_profile_section",
+   "fieldtype": "Section Break",
+   "label": "Desired Candidate Profile"
+  },
+  {
+   "fieldname": "age_bracket",
+   "fieldtype": "Select",
+   "label": "Age Bracket",
+   "options": "Select\n18 to 25\n25 to 35\n35 to 45\n45 Above"
+  },
+  {
+   "fieldname": "minimum_qualification",
+   "fieldtype": "Data",
+   "label": "Minimum Qualification"
+  },
+  {
+   "fieldname": "column_break_37",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "experienced_in",
+   "fieldtype": "Data",
+   "label": "Experienced In"
+  },
+  {
+   "fieldname": "experience_period",
+   "fieldtype": "Data",
+   "label": "Experience Period"
+  },
+  {
+   "fieldname": "section_break_40",
+   "fieldtype": "Section Break",
+   "label": "<h3>Skills &amp; Other Competencies</h3>"
+  },
+  {
+   "fieldname": "computers_operations_column",
+   "fieldtype": "Column Break",
+   "label": "Computers Operations"
+  },
+  {
+   "default": "0",
+   "fieldname": "ms_office",
+   "fieldtype": "Check",
+   "label": "MS Office"
+  },
+  {
+   "default": "0",
+   "fieldname": "quick_book",
+   "fieldtype": "Check",
+   "label": "Quick Book"
+  },
+  {
+   "default": "0",
+   "fieldname": "gp",
+   "fieldtype": "Check",
+   "label": "GP"
+  },
+  {
+   "default": "0",
+   "fieldname": "point_of_sale",
+   "fieldtype": "Check",
+   "label": "Point of Sale"
+  },
+  {
+   "default": "0",
+   "fieldname": "others",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval:doc.others == \"1\"",
+   "fieldname": "please_specify",
+   "fieldtype": "Small Text",
+   "label": "Please Specify"
+  },
+  {
+   "fieldname": "background_information_column",
+   "fieldtype": "Column Break",
+   "label": "Background Information"
+  },
+  {
+   "default": "0",
+   "fieldname": "accounting_cycle",
+   "fieldtype": "Check",
+   "label": "Accounting Cycle"
+  },
+  {
+   "default": "0",
+   "fieldname": "payroll_management",
+   "fieldtype": "Check",
+   "label": "Payroll Management"
+  },
+  {
+   "default": "0",
+   "fieldname": "auditing",
+   "fieldtype": "Check",
+   "label": "Auditing"
+  },
+  {
+   "default": "0",
+   "fieldname": "taxation",
+   "fieldtype": "Check",
+   "label": "Taxation"
+  },
+  {
+   "default": "0",
+   "fieldname": "others1",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval:doc.others1 == \"1\"",
+   "fieldname": "please_specify1",
+   "fieldtype": "Small Text",
+   "label": "Please Specify"
+  },
+  {
+   "fieldname": "management_organization_column",
+   "fieldtype": "Column Break",
+   "label": "Management & Organization"
+  },
+  {
+   "default": "0",
+   "fieldname": "supervision",
+   "fieldtype": "Check",
+   "label": "Supervision"
+  },
+  {
+   "default": "0",
+   "fieldname": "problem_solving",
+   "fieldtype": "Check",
+   "label": "Problem Solving"
+  },
+  {
+   "default": "0",
+   "fieldname": "work_management",
+   "fieldtype": "Check",
+   "label": "Work Management"
+  },
+  {
+   "default": "0",
+   "fieldname": "responsible",
+   "fieldtype": "Check",
+   "label": "Responsible"
+  },
+  {
+   "default": "0",
+   "fieldname": "others2",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval:doc.others2 == \"1\"",
+   "fieldname": "please_specify2",
+   "fieldtype": "Small Text",
+   "label": "Please Specify"
+  },
+  {
+   "fieldname": "communication_column",
+   "fieldtype": "Column Break",
+   "label": "Communication"
+  },
+  {
+   "default": "0",
+   "fieldname": "telephonic",
+   "fieldtype": "Check",
+   "label": "Telephonic"
+  },
+  {
+   "default": "0",
+   "fieldname": "face_to_face",
+   "fieldtype": "Check",
+   "label": "Face to Face"
+  },
+  {
+   "default": "0",
+   "fieldname": "emails",
+   "fieldtype": "Check",
+   "label": "Emails"
+  },
+  {
+   "default": "0",
+   "fieldname": "reports",
+   "fieldtype": "Check",
+   "label": "Reports"
+  },
+  {
+   "default": "0",
+   "fieldname": "others3",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval:doc.others3 == \"1\"",
+   "fieldname": "please_specify3",
+   "fieldtype": "Small Text",
+   "label": "Please Specify"
+  },
+  {
+   "fieldname": "section_break_69",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "small_text_70",
+   "fieldtype": "Small Text",
+   "label": "<h3>Any Other/Additional Comments about Requisition</h3>"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_71",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "<h2 style=\"text-align: center;\">WORKFORCE PLANNING</h2>"
+  },
+  {
+   "fieldname": "shift_resource_from_machine",
+   "fieldtype": "Select",
+   "label": "Shift Resource from Machine",
+   "options": "Select\nJIANSHE\nMC FLURY\nKFC-16\n5 Lit Bucket\n12 Onse\n6*6 ML UNILEVER\n2* Machine 100 ML UNILEVER\n10-12 D/WALL\n22 OUNCE KFC\nONE LITRE KFC\n100 ML UNILEVER\n400 ML KFC\n4* Machine PIA\n3 LIT BUCKET\n250-300 ML\n4*Machine PIA\n6 OUNCE PESHAWARI\nNESTLE 10 OUNCE\nLK-106-MF DIE CUTTING\nBOBST,102 DIE CUTTING\nBOBST 1080\nDC-004 HAND FIT\nDC-002 HAND FIT\nDC-003 HAND FIt\nPOOLER PAPER CUTTING\nGLUE PASTING\nBRAUSE TA9000-C3 GLUE PASTING\nExtruder\nInjection Moulding\nThermo Forming\nLid Forming\nPrinting\nSpoon Packing\nCrusher\nHEIDELBERG\nCPC-003 HEIDELBERG SPEED MASTER 4 COLOR 28*40\nFLEXO-001\nCPC-004 HEIDELBERF SPEED MASTER 4 COLOR 24*40\u201d\nCPC-005 HEIDELBERF SPEED MASTER 4 COLOR 24*40\u201d\nCPC-008 HEIDELBERF SPEED MASTER 4 COLOR 24*40\""
+  },
+  {
+   "fieldname": "column_break_73",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "shift_resource_from_sub_department",
+   "fieldtype": "Link",
+   "label": "Shift Resource From Sub Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "column_break_75",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "go_for_hiring",
+   "fieldtype": "Check",
+   "label": "Go For Hiring "
+  },
+  {
+   "fieldname": "section_break_77",
+   "fieldtype": "Section Break",
+   "label": "<h2 style=\"text-align: center;\">TO BE FILLED BY HUMAN RESOURCE DEPARTMENT</h2>"
+  },
+  {
+   "fieldname": "candidate_name",
+   "fieldtype": "Data",
+   "label": "Candidate Name"
+  },
+  {
+   "fieldname": "salary1",
+   "fieldtype": "Currency",
+   "label": "Salary"
+  },
+  {
+   "fieldname": "column_break_81",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_joining",
+   "fieldtype": "Data",
+   "label": "Date of Joining"
+  },
+  {
+   "fieldname": "hr_reference_no",
+   "fieldtype": "Data",
+   "label": "HR Reference#"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "Employee Requisition"
+  },
+  {
+   "fieldname": "interview_call_logs_section",
+   "fieldtype": "Section Break",
+   "label": "Interview Call Logs"
+  },
+  {
+   "fieldname": "table_87",
+   "fieldtype": "Table",
+   "options": "Interview Call Logs"
+  }
+ ],
+ "modified": "2023-04-08 16:51:37.999336",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Employee Requisition",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "restrict_to_domain": "Services",
+ "search_fields": "job_title",
+ "sort_field": "modified",
+ "sort_order": "ASC",
+ "title_field": "job_title",
+ "track_changes": 1
+}
