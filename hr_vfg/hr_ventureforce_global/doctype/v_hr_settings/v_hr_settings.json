@@ -31,6 +31,14 @@
   "late_mark",
   "column_break_13",
   "early_mark",
+  "attendance_adjustment",
+  "check_out_time_change",
+  "short_leave_apply_on_halfday",
+  "column_break_28",
+  "short_leave_no_allowed",
+  "short_leave_apply_on_late",
+  "column_break_30",
+  "short_leave_hours_allowed",
   "section_break_23",
   "night_shift_start_time",
   "column_break_25",
@@ -43,11 +51,6 @@
    "fieldname": "maximum_lates_for_absent",
    "fieldtype": "Int",
    "label": "Maximum Lates For Absent"
-  },
-  {
-   "fieldname": "attendance_machine",
-   "fieldtype": "Table",
-   "options": "Attendance Machine"
   },
   {
    "fieldname": "absent_sandwich_section",
@@ -190,13 +193,59 @@
    "fieldname": "holiday_full_day_ot",
    "fieldtype": "Int",
    "label": "Holiday Full Day Overtime"
+  },
+  {
+   "fieldname": "attendance_adjustment",
+   "fieldtype": "Section Break",
+   "label": "Attendance Adjustment"
+  },
+  {
+   "fieldname": "check_out_time_change",
+   "fieldtype": "Select",
+   "label": "Check Out Time Change ",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "attendance_machine",
+   "fieldtype": "Table",
+   "options": "Attendance Machine"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "short_leave_apply_on_halfday",
+   "fieldtype": "Check",
+   "label": "Short Leave Apply on Halfday"
+  },
+  {
+   "fieldname": "column_break_30",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "short_leave_apply_on_late",
+   "fieldtype": "Check",
+   "label": "Short Leave Apply on Late"
+  },
+  {
+   "fieldname": "short_leave_hours_allowed",
+   "fieldtype": "Data",
+   "label": "Short Leave Hours Allowed"
+  },
+  {
+   "fieldname": "short_leave_no_allowed",
+   "fieldtype": "Data",
+   "label": "Short Leave No Allowed"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-08 18:34:18.637814",
+ "modified": "2023-04-16 12:50:05.739898",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "V HR Settings",

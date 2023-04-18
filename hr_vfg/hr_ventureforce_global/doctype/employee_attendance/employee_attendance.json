@@ -23,6 +23,7 @@
   "present_days",
   "total_lates",
   "lates_for_halfday",
+  "total_working_days",
   "cb18",
   "total_absents",
   "total_half_days",
@@ -179,7 +180,7 @@
   },
   {
    "fieldname": "total_half_days",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Total Half Days"
   },
   {
@@ -352,11 +353,16 @@
    "fieldname": "total_public_holidays",
    "fieldtype": "Int",
    "label": "Total Public Holidays"
+  },
+  {
+   "fieldname": "total_working_days",
+   "fieldtype": "Float",
+   "label": "Total Working Days"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2023-04-08 18:37:33.330313",
+ "modified": "2023-04-13 10:31:12.323160",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",

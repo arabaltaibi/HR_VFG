@@ -36,6 +36,7 @@
   "column_break_29",
   "night_switch",
   "mark_half_day",
+  "early_overtime",
   "column_break_32",
   "extra_working_hours_after_shift",
   "mark_leave",
@@ -221,6 +222,7 @@
    "label": "IP"
   },
   {
+   "default": "00:00:00",
    "fieldname": "approved_ot1",
    "fieldtype": "Time",
    "label": "Approved OT",
@@ -300,11 +302,17 @@
    "fieldtype": "Check",
    "label": "Weekly Off",
    "read_only": 1
+  },
+  {
+   "fieldname": "early_overtime",
+   "fieldtype": "Time",
+   "label": "Early Overtime",
+   "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-04-06 09:54:05.574973",
+ "modified": "2023-04-16 06:49:13.207920",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance Table",

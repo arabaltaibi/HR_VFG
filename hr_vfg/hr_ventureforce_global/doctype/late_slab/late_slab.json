@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:late_slab",
+ "creation": "2023-04-14 12:20:30.832500",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "late_slab",
+  "late_slab_minutes"
+ ],
+ "fields": [
+  {
+   "fieldname": "late_slab",
+   "fieldtype": "Data",
+   "label": "Late Slab",
+   "unique": 1
+  },
+  {
+   "description": "Time in minutes",
+   "fieldname": "late_slab_minutes",
+   "fieldtype": "Float",
+   "label": "Calculate Late Hours After"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-04-15 07:07:15.193736",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Late Slab",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

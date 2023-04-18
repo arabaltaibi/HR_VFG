@@ -207,6 +207,7 @@ def get_checkouts(args=None,ip=None, port=None,password=0):
 					if attendance_dict.get(str(attend1).split()[1]):
 						if attendance_dict.get(str(attend1).split()[1]).get(str(attend1).split()[3]):
 							t_biometric = str(attend1).split()[1]
+							flg = False
 							t_date = str(attend1).split()[3]
 							employee = frappe.db.get_value("Employee",{"biometric_id":t_biometric},"name")
 							shift_ass = frappe.get_all("Shift Assignment", filters={'employee': employee,

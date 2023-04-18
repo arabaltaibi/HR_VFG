@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:early_slab",
+ "creation": "2023-04-14 12:23:25.374583",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "early_slab",
+  "early_slab_minutes"
+ ],
+ "fields": [
+  {
+   "fieldname": "early_slab",
+   "fieldtype": "Data",
+   "label": "Early Slab",
+   "unique": 1
+  },
+  {
+   "description": "Time in minutes",
+   "fieldname": "early_slab_minutes",
+   "fieldtype": "Float",
+   "label": "Calculate Early Hours After"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-04-15 07:08:02.164899",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Early Slab",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

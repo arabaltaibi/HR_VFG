@@ -35,6 +35,7 @@ class EmployeeAttendance(Document):
         total_late_coming_hours = timedelta(hours=0, minutes=0, seconds=0)
         total_additional_hours = timedelta(hours=0, minutes=0, seconds=0)
         total_early_ot = timedelta(hours=0, minutes=0, seconds=0)
+        total_approved_ot = timedelta(hours=0, minutes=0, seconds=0)
         required_working_hrs = 0.0
         holiday_halfday_ot =0
         holiday_full_day_ot =0
@@ -66,7 +67,7 @@ class EmployeeAttendance(Document):
         #     pass
         holiday_flag = False
         leave_flag = False
-        total_holiday_hours = timedelta(hours=1,minutes=0,seconds=0)
+        total_holiday_hours = timedelta(hours=0,minutes=0,seconds=0)
         previous = None
         index = 0
         for data in self.table1:
@@ -226,7 +227,11 @@ class EmployeeAttendance(Document):
 
                     if first_in_time < day_data.start_time:
                         if first_in_time != timedelta(hours=0):
-                            total_early_ot = total_early_ot + (day_data.start_time - first_in_time )
+                            if day_data.early_overtime_start:
+                                if first_in_time < day_data.early_overtime_start:
+                                    first_in_time = day_data.early_overtime_start
+                                    data.early_overtime = day_data.start_time - first_in_time 
+                                    total_early_ot = total_early_ot + (day_data.start_time - first_in_time )
                             first_in_time = day_data.start_time
 
                     if first_in_time >= late_mark and first_in_time < half_day_time:
@@ -349,7 +354,8 @@ class EmployeeAttendance(Document):
                         if day_data.minimum_hours_for_half_day > 0:
                             data.half_day = 1
                     else:
-                        if day_data.minimum_hours_for_half_day > 0 and day_data.minimum_hours_for_present > 0:
+                        if (day_data.minimum_hours_for_half_day > 0 and day_data.minimum_hours_for_present > 0) \
+                             or total_time_hours < day_data.minimum_hours_for_absent :
                             data.absent = 1
                             data.half_day = 0
                             data.early = 0
@@ -368,7 +374,7 @@ class EmployeeAttendance(Document):
                         data.early_going_hours =  day_data.end_time - first_out_time
                         if day_data.calculate_early_hours == "Exit Grace Period":
                                     data.early_going_hours = data.early_going_hours - timedelta(hours=0,minutes=int(day_data.max_early),seconds=0)
-                        total_early_going_hrs = total_early_going_hrs + data.early_going_hours
+                        #total_early_going_hrs = total_early_going_hrs + data.early_going_hours
                 if data.weekly_off==1 or data.public_holiday == 1:
                      data.absent = 0 
                 
@@ -381,8 +387,8 @@ class EmployeeAttendance(Document):
                     total_early += 1
                 if data.late:
                     total_lates += 1
-                    if data.late_coming_hours:
-                        total_late_coming_hours = total_late_coming_hours + data.late_coming_hours
+                    # if data.late_coming_hours:
+                    #     total_late_coming_hours = total_late_coming_hours + data.late_coming_hours
                 if data.half_day:
                     total_half_days += 1
               
@@ -438,6 +444,20 @@ class EmployeeAttendance(Document):
                                         holiday_full_day_ot = holiday_full_day_ot + 1
                 half_day_leave = False
                 holiday_flag = False
+                if day_data:
+                    if day_data.late_slab and data.late_coming_hours:
+                        lsm = frappe.db.get_value("Late Slab",{"name":day_data.late_slab},"late_slab_minutes")
+                        if data.late_coming_hours > timedelta(hours=0,minutes=int(lsm)):
+                            data.late_coming_hours = data.late_coming_hours - timedelta(hours=0,minutes=int(lsm))
+                            total_late_coming_hours = total_late_coming_hours + data.late_coming_hours
+                    if day_data.early_slab and data.early_going_hours:
+                        esm = frappe.db.get_value("Early Slab",{"name":day_data.early_slab},"early_slab_minutes")
+                        if data.early_going_hours > timedelta(hours=0,minutes=int(esm)):
+                            data.early_going_hours = data.early_going_hours - timedelta(hours=0,minutes=int(esm))
+                            total_early_going_hrs = total_early_going_hrs + data.early_going_hours
+                    
+                if data.approved_ot1:
+                    total_approved_ot+= timedelta(hours=int(str(data.approved_ot1).split(":")[0]),minutes=int(str(data.approved_ot1).split(":")[1]))
                 check_sanwich_after_holiday(self,previous,data,hr_settings,index)
                
                 previous = data
@@ -463,6 +483,8 @@ class EmployeeAttendance(Document):
             self.over_time = 0.0
         self.difference = round(
             flt(total_late_coming_hours.total_seconds())/3600, 2)
+        self.approved_ot = round(
+            flt(total_approved_ot.total_seconds())/3600, 2)
         
         self.extra_hours = round(
             flt(total_additional_hours.total_seconds())/3600, 2)
