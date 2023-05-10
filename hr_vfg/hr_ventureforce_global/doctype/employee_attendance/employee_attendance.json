@@ -360,9 +360,8 @@
    "label": "Total Working Days"
   }
  ],
- "hide_toolbar": 1,
  "links": [],
- "modified": "2023-04-13 10:31:12.323160",
+ "modified": "2023-04-19 10:45:34.155865",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",

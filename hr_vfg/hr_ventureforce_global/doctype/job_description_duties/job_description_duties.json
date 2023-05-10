@@ -1,0 +1,30 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-28 14:56:59.529263",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details"
+ ],
+ "fields": [
+  {
+   "fieldname": "details",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-04-28 14:56:59.529263",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Job Description Duties",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

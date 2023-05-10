@@ -91,7 +91,7 @@
    "fetch_from": "employee.branch",
    "fieldname": "madarsa",
    "fieldtype": "Link",
-   "label": "Madarsa",
+   "label": "Branch",
    "options": "Branch",
    "read_only": 1
   },
@@ -131,24 +131,27 @@
    "default": "0",
    "fieldname": "morning",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Morning"
   },
   {
    "default": "0",
    "fieldname": "afternoon",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Afternoon"
   },
   {
    "default": "0",
    "fieldname": "evening",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Evening"
   },
   {
    "fieldname": "new_madarsa",
    "fieldtype": "Link",
-   "label": "New Madarsa Name",
+   "label": "New Branch",
    "options": "Branch"
   },
   {
@@ -175,7 +178,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "fetch_from": "employee.salary",
+   "fetch_from": "employee.salarys",
    "fieldname": "previous_salary",
    "fieldtype": "Currency",
    "label": "Previous Salary",
@@ -216,7 +219,8 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "employee.conveyance_allowance",
+   "fetch_from": "employee.fuel_allowance",
+   "fetch_if_empty": 1,
    "fieldname": "previous_allowance",
    "fieldtype": "Currency",
    "label": "Previous Allowance"
@@ -295,7 +299,7 @@
    "fetch_from": "replacement_employee.branch",
    "fieldname": "rep_madarsa",
    "fieldtype": "Link",
-   "label": "Madarsa",
+   "label": "Branch",
    "options": "Branch",
    "read_only": 1
   },
@@ -314,24 +318,28 @@
    "default": "0",
    "fieldname": "hafiz",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Hafiz"
   },
   {
    "default": "0",
    "fieldname": "nazrah",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Nazrah"
   },
   {
    "default": "0",
    "fieldname": "qaidah",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Qaidah"
   },
   {
    "fetch_from": "employee.file_number",
    "fieldname": "new_file_no",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "New File No"
   },
   {
@@ -377,7 +385,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-08 11:08:23.103718",
+ "modified": "2023-04-26 12:21:41.669775",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Transfer",

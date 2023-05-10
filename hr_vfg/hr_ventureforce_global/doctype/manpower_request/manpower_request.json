@@ -1,0 +1,207 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-04-28 13:49:56.831922",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "department",
+  "title_of_position",
+  "location",
+  "is_replacement",
+  "column_break_5",
+  "date_of_request",
+  "position_report_to",
+  "salary_proposed",
+  "budgeted",
+  "amended_from",
+  "section_break_11",
+  "job_description",
+  "qualification_and_job_specification_section",
+  "job_requirements",
+  "replacement_employee_section",
+  "employee_code",
+  "designation",
+  "benifits",
+  "column_break_19",
+  "employee_name",
+  "current_salary",
+  "reasons_for_leaving",
+  "column_break_23",
+  "date_of_leaving"
+ ],
+ "fields": [
+  {
+   "default": "HR/Rect/.YYYY./.",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "HR/Rect/.YYYY./."
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "title_of_position",
+   "fieldtype": "Link",
+   "label": "Title of Position",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_request",
+   "fieldtype": "Date",
+   "label": "Date of Request"
+  },
+  {
+   "fieldname": "position_report_to",
+   "fieldtype": "Link",
+   "label": "Position Report To",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "salary_proposed",
+   "fieldtype": "Currency",
+   "label": "Salary Proposed"
+  },
+  {
+   "fieldname": "budgeted",
+   "fieldtype": "Select",
+   "label": "Budgeted",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Manpower Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break",
+   "label": "Job Description"
+  },
+  {
+   "fieldname": "job_description",
+   "fieldtype": "Table",
+   "options": "Manpower Job Description"
+  },
+  {
+   "fieldname": "qualification_and_job_specification_section",
+   "fieldtype": "Section Break",
+   "label": "Qualification and Job Specification"
+  },
+  {
+   "fieldname": "job_requirements",
+   "fieldtype": "Table",
+   "options": "Qualification and Job Specification"
+  },
+  {
+   "depends_on": "eval:doc.is_replacement ==1",
+   "fieldname": "replacement_employee_section",
+   "fieldtype": "Section Break",
+   "label": "Replacement Employee"
+  },
+  {
+   "fieldname": "employee_code",
+   "fieldtype": "Link",
+   "label": "Employee Code",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee_code.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_code.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_code.salary",
+   "fieldname": "current_salary",
+   "fieldtype": "Currency",
+   "label": "Current Salary",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_code.resignation_letter_date",
+   "fieldname": "date_of_leaving",
+   "fieldtype": "Date",
+   "label": "Date of Leaving",
+   "read_only": 1
+  },
+  {
+   "fieldname": "benifits",
+   "fieldtype": "Small Text",
+   "label": "Benifits"
+  },
+  {
+   "fieldname": "reasons_for_leaving",
+   "fieldtype": "Small Text",
+   "label": "Reasons for Leaving"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_replacement",
+   "fieldtype": "Check",
+   "label": "Is Replacement?"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-04-28 14:36:35.818071",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Manpower Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

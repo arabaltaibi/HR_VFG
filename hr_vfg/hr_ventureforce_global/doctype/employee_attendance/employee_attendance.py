@@ -39,6 +39,7 @@ class EmployeeAttendance(Document):
         required_working_hrs = 0.0
         holiday_halfday_ot =0
         holiday_full_day_ot =0
+        self.no_of_holiday_night = 0
         self.total_absents = 0
         extra_ot_amount = 0
         holiday_doc = None
@@ -57,8 +58,15 @@ class EmployeeAttendance(Document):
         first_day = dt(year, month, 1)
         last_day = dt(year, month, num_days)
         if hr_settings.period_from != 1:
-            first_day = dt(year, month-1, int(hr_settings.period_from))
+            if month == 1:
+                temp_month = 12
+            else:
+                temp_month = month - 1
+            first_day = dt(year, temp_month, int(hr_settings.period_from))
             last_day = dt(year, month, int(hr_settings.period_to))
+            _, num_days = calendar.monthrange(year, temp_month)
+            num_days = num_days - int(hr_settings.period_from) + int(hr_settings.period_to) + 1
+
         holidays = get_holidays_for_employee(self.employee,first_day,last_day)
         self.total_working_days = num_days -len(holidays)
         self.no_of_sundays = 0
@@ -230,8 +238,8 @@ class EmployeeAttendance(Document):
                             if day_data.early_overtime_start:
                                 if first_in_time < day_data.early_overtime_start:
                                     first_in_time = day_data.early_overtime_start
-                                    data.early_overtime = day_data.start_time - first_in_time 
-                                    total_early_ot = total_early_ot + (day_data.start_time - first_in_time )
+                                data.early_overtime = day_data.start_time - first_in_time 
+                                total_early_ot = total_early_ot + (day_data.start_time - first_in_time )
                             first_in_time = day_data.start_time
 
                     if first_in_time >= late_mark and first_in_time < half_day_time:
@@ -337,6 +345,10 @@ class EmployeeAttendance(Document):
                                     data.additional_hours  =  data.late_sitting - timedelta(hours=hr_settings.threshold_for_additional_hours,minutes=0,seconds=0)
                                     total_additional_hours = total_additional_hours + data.additional_hours
 
+                        if first_out_time >= timedelta(hours=get_time(hr_settings.night_shift_start_time).hour,minutes=get_time(hr_settings.night_shift_start_time).minute) and holiday_flag:
+                            data.holiday_night = 1
+                            self.no_of_holiday_night+=1
+
                 else:
                     if data.weekly_off==0 and data.public_holiday == 0:
                         data.absent = 1 
@@ -419,10 +431,12 @@ class EmployeeAttendance(Document):
                         amount = 0
                         for sl in OT_slabs.slabs:
                             if flt(late_hours) <= flt(sl.hours):
-                                
-                                amount  = sl.amount
-                            elif flt(sl.hours) > flt(late_hours):
+                               amount  = sl.amount
+                            if flt(sl.hours) > flt(late_hours):
                                 break
+                            #for case if late sitting hours are greater than all slabs
+                            amount  = sl.amount
+                            
                         data.total_ot_amount = amount
                         extra_ot_amount+=amount
 

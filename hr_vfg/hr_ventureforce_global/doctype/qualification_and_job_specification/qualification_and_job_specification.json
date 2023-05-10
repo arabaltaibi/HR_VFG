@@ -1,0 +1,37 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-28 14:09:27.921619",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "requirements",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Requirements"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-04-28 14:09:27.921619",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Qualification and Job Specification",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

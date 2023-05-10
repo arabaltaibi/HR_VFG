@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-28 14:53:15.990957",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "position",
+  "department",
+  "job_code",
+  "location",
+  "column_break_5",
+  "report_to",
+  "employee_id",
+  "employee_name",
+  "no_of_subordinates",
+  "amended_from",
+  "job_summary_section",
+  "job_summary",
+  "duties_section",
+  "table_14"
+ ],
+ "fields": [
+  {
+   "fieldname": "position",
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "job_code",
+   "fieldtype": "Data",
+   "label": "Job Code"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "report_to",
+   "fieldtype": "Link",
+   "label": "Report To",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "no_of_subordinates",
+   "fieldtype": "Int",
+   "label": "No of Subordinates"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Job Description",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "job_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Job Summary"
+  },
+  {
+   "fieldname": "job_summary",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "description": "Following are the general duties & responsibilities, and can be altered as and when required.",
+   "fieldname": "duties_section",
+   "fieldtype": "Section Break",
+   "label": "General Duties & Responsibilities"
+  },
+  {
+   "fieldname": "table_14",
+   "fieldtype": "Table",
+   "options": "Job Description Duties"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-04-28 14:59:42.795953",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Job Description",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

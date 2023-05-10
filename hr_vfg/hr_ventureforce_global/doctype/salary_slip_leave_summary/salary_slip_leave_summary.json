@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-26 12:00:12.739340",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "leave_type",
+  "balance",
+  "taken",
+  "net"
+ ],
+ "fields": [
+  {
+   "fieldname": "leave_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Leave Type",
+   "options": "Leave Type"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Last Month Balance"
+  },
+  {
+   "fieldname": "taken",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "This Month Taken"
+  },
+  {
+   "fieldname": "net",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Balance"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-04-26 12:01:27.236406",
+ "modified_by": "Administrator",
+ "module": "HR VentureForce Global",
+ "name": "Salary Slip Leave Summary",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
