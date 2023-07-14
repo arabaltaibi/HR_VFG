@@ -27,6 +27,7 @@
   "cb18",
   "total_absents",
   "total_half_days",
+  "early_for_halfday",
   "no_of_nights",
   "column_break_13",
   "no_of_sundays",
@@ -35,6 +36,7 @@
   "column_break_25",
   "month_days",
   "lates_for_absent",
+  "early_for_absents",
   "hours_worked",
   "time_calculation_section",
   "late_sitting_hours",
@@ -358,10 +360,20 @@
    "fieldname": "total_working_days",
    "fieldtype": "Float",
    "label": "Total Working Days"
+  },
+  {
+   "fieldname": "early_for_halfday",
+   "fieldtype": "Float",
+   "label": "Early For Halfday"
+  },
+  {
+   "fieldname": "early_for_absents",
+   "fieldtype": "Float",
+   "label": "Early for Absents"
   }
  ],
  "links": [],
- "modified": "2023-04-19 10:45:34.155865",
+ "modified": "2023-06-26 16:55:14.482060",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Attendance",

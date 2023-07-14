@@ -108,12 +108,15 @@ class AttendanceLogs(TransactionBase):
 				doc.email_id = empl[0][4]
 				#doc.total_working_hours = (int(empl[0][4])*m)+(int(empl[0][5])*f)+(int(empl[0][6])*sat)+(int(empl[0][7])*sun)
 				for x in range(total_days):
-					pi = doc.append('table1', {})
+					pi = doc.append('table1', {"check_in_1":None,"check_out_1":None})
 					pi.date = da
 					if str(da) == str(self.attendance_date):
 						if self.type == "Check In":
 							pi.check_in_1 = att_det[4]
 						if self.type == "Check Out":
 							pi.check_out_1 = att_det[4]
+					else:
+						pi.check_in_1 = hr_settings.auto_fetch_check_in
+						pi.check_out_1 = hr_settings.auto_fetch_check_out
 					da = da + timedelta(days=1)
 				doc.save(ignore_permissions=True)

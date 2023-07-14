@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "Proton",
- "modified": "2023-03-31 19:36:00.927631",
+ "modified": "2023-07-14 19:54:42.595962",
  "modified_by": "Administrator",
  "module": "HR VentureForce Global",
  "name": "Employee Individual Attendance",
@@ -25,6 +25,9 @@
   },
   {
    "role": "Employee"
+  },
+  {
+   "role": "HR Manager"
   }
  ]
 }

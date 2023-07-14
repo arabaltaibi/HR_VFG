@@ -132,7 +132,7 @@ class EmployeeAttendance(Document):
                 if not data.check_out_1 and data.check_in_1:
                     data.check_out_1 = hr_settings.auto_fetch_check_out
 
-                if data.check_in_1 and data.check_out_1:
+                if data.check_in_1 and data.check_out_1 and data.check_in_1 != data.check_out_1:
                     first_in_time = timedelta(hours=int(str(data.check_in_1).split(":")[0]),
                                               minutes=int(str(data.check_in_1).split(":")[1]))
                     first_out_time = timedelta(hours=int(str(data.check_out_1).split(":")[0]),
@@ -147,7 +147,7 @@ class EmployeeAttendance(Document):
                         diff = first_out_time - first_in_time
                     total_time = total_time + diff if total_time else diff
                    
-                if data.check_in_1:
+                if data.check_in_1 and data.check_in_1 != data.check_out_1:
                     shift = None
                     shift_ass = frappe.get_all("Shift Assignment", filters={'employee': self.employee,
                                                                             'start_date': ["<=", getdate(data.date)],'end_date': [">=", getdate(data.date)]}, fields=["*"])
@@ -513,7 +513,11 @@ class EmployeeAttendance(Document):
         t_earl = 0
         if hr_settings.maximum_lates_for_absent > 0:
             t_lat = int(total_lates/hr_settings.maximum_lates_for_absent) if total_lates >= hr_settings.maximum_lates_for_absent else 0
-        self.lates_for_absent = t_earl + t_lat
+        self.lates_for_absent = t_lat
+
+        if hr_settings.maximum_early_for_absent > 0:
+            t_earl = int(total_early/hr_settings.maximum_early_for_absent) if total_early >= hr_settings.maximum_early_for_absent else 0
+        self.early_for_absents = t_earl
        
         self.short_hours = self.difference
        
@@ -524,7 +528,12 @@ class EmployeeAttendance(Document):
         lfh = 0
         if hr_settings.maximum_lates_for_halfday > 0:
             lfh = int(total_lates/hr_settings.maximum_lates_for_halfday) if total_lates >= hr_settings.maximum_lates_for_halfday else 0
-        self.lates_for_halfday = lfh
+        self.lates_for_halfday = round(lfh/2,1)
+
+        efh = 0
+        if hr_settings.maximum_early_for_halfday > 0:
+            efh = int(total_early/hr_settings.maximum_early_for_halfday) if total_early >= hr_settings.maximum_early_for_halfday else 0
+        self.early_for_halfday = round(efh/2,1)
 
     def get_month_no(self, month):
         dict_={

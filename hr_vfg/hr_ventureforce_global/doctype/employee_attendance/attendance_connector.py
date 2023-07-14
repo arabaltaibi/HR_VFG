@@ -41,6 +41,8 @@ def get_checkins(args=None, ip=None, port=None,password=0):
 	if not args:
 		args = {"from_date":"2022-01-01","to_date":today()}
 	emp_list = [] #110.93.236.48
+	if not password:
+		password = 0
 	zk = ZK(ip, port=int(port), timeout=1500, password=password, force_udp=False, ommit_ping=False)
 	frappe.log_error("Starting..","Attendance hook test")
 	try:
@@ -159,6 +161,8 @@ def get_checkouts(args=None,ip=None, port=None,password=0):
 	emp_list = [] #110.93.236.48
 	if not args:
 		args = {"from_date":"2023-03-01","to_date":today()}
+	if not password:
+		password = 0
 	zk = ZK(ip, port=int(port), timeout=1500, password=password, force_udp=False, ommit_ping=False)
 	try:
 		conn = zk.connect()
@@ -323,6 +327,8 @@ def get_checkins_checkouts(args=None,ip=None, port=None,password=0):
 	emp_list = [] #110.93.236.48
 	if not args:
 		args = {"from_date":"2023-03-01","to_date":today()}
+	if not password:
+		password = 0
 	zk = ZK(ip, port=int(port), timeout=1500, password=password, force_udp=False, ommit_ping=False)
 	try:
 		conn = zk.connect()
